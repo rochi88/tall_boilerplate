@@ -29,6 +29,7 @@
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.7",
+        "barryvdh/laravel-ide-helper": "^2.12",
         "fakerphp/faker": "^1.9.1",
         "laravel/breeze": "^1.11",
         "laravel/pint": "^1.0",
@@ -90,9 +91,7 @@
     },
     "extra": {
         "laravel": {
-            "dont-discover": [
-                "barryvdh/laravel-ide-helper"
-            ]
+            "dont-discover": []
         }
     },
     "config": {
