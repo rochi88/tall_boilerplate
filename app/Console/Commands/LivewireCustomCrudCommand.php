@@ -92,7 +92,7 @@ class LivewireCustomCrudCommand extends Command
     protected function generateLivewireCrudClassfile()
     {
         // Set the origin and destination for the livewire class file
-        $fileOrigin = base_path('/stubs/custom.livewire.crud.stub');
+        $fileOrigin = base_path('/stubs/livewire-crud/custom.livewire.crud.stub');
         $fileDestination = base_path('/app/Http/Livewire/' . $this->nameOfTheClass . '.php');
 
         if ($this->file->exists($fileDestination)) {
@@ -132,7 +132,7 @@ class LivewireCustomCrudCommand extends Command
     protected function generateLivewireCrudViewFile()
     {
         // Set the origin and destination for the livewire class file
-        $fileOrigin = base_path('/stubs/custom.livewire.crud.view.stub');
+        $fileOrigin = base_path('/stubs/livewire-crud/custom.livewire.crud.view.stub');
         $fileDestination = base_path('/resources/views/livewire/' . Str::kebab($this->nameOfTheClass) . '.blade.php');
 
         if ($this->file->exists($fileDestination)) {
