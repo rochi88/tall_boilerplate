@@ -12,7 +12,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([PermissionSeeder::class]);
 
-        User::factory(['email' => 'info@geisi.dev'])
+        User::factory(['email' => 'raisul.me@gmail.com'])
             ->withPersonalTeam()
             ->hasAttached(Team::factory()->count(3))
             ->create();

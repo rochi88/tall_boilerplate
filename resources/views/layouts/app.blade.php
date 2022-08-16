@@ -25,7 +25,7 @@
             }
     </style>
     </head>
-    <body class="font-sans antialiased">
+    {{-- <body class="font-sans antialiased">
         <x-jet-banner />
 
         <div class="min-h-screen bg-gray-100">
@@ -39,6 +39,7 @@
                     </div>
                 </header>
             @endif
+            
 
             <!-- Page Content -->
             <main>
@@ -51,5 +52,29 @@
         @livewireScripts
         @powerGridScripts
         <x-livewire-alert::scripts />
+    </body> --}}
+    <body class="font-sans antialiased">
+     @include('test')
+
+    @stack('modals')
+
+    @livewireScripts
+    @powerGridScripts
+    <x-livewire-alert::scripts />
+    <script>
+      const setup = () => {
+        return {
+          isSidebarOpen: false,
+          currentSidebarTab: null,
+          isSettingsPanelOpen: false,
+          isSubHeaderOpen: false,
+          watchScreen() {
+            if (window.innerWidth <= 1024) {
+              this.isSidebarOpen = false
+            }
+          },
+        }
+      }
+    </script>
     </body>
 </html>
