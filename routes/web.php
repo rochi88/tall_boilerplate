@@ -22,7 +22,16 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-Route::view('/powergrid', 'powergrid-demo');
+//authenticated
+Route::middleware(['web', 'auth', 'activeUser', 'IpCheckMiddleware'])->prefix('admin')->group(function () {
+    Route::get('/', Dashboard::class)->name('admin');
+    Route::get('users', Users::class)->name('admin.users.index');
+    Route::get('users/{user}/edit', EditUser::class)->name('admin.users.edit');
+    Route::get('users/{user}', ShowUser::class)->name('admin.users.show');
+
+});
+
+// Route::view('/powergrid', 'powergrid-demo');
 // Route::get('students', Crud::class);
 
 require __DIR__.'/auth.php';

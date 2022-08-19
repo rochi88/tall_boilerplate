@@ -8469,16 +8469,16 @@
         },
         {
             "name": "wireui/wireui",
-            "version": "v1.14.1",
+            "version": "v1.14.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/wireui/wireui.git",
-                "reference": "18c995454fed47cbfdc91472cf74cfc00aecdcd4"
+                "reference": "3fd87b32be8b4f4d8db89f528335ef76e5bc2d68"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/wireui/wireui/zipball/18c995454fed47cbfdc91472cf74cfc00aecdcd4",
-                "reference": "18c995454fed47cbfdc91472cf74cfc00aecdcd4",
+                "url": "https://api.github.com/repos/wireui/wireui/zipball/3fd87b32be8b4f4d8db89f528335ef76e5bc2d68",
+                "reference": "3fd87b32be8b4f4d8db89f528335ef76e5bc2d68",
                 "shasum": ""
             },
             "require": {
@@ -8531,7 +8531,7 @@
             ],
             "support": {
                 "issues": "https://github.com/wireui/wireui/issues",
-                "source": "https://github.com/wireui/wireui/tree/v1.14.1"
+                "source": "https://github.com/wireui/wireui/tree/v1.14.3"
             },
             "funding": [
                 {
@@ -8539,7 +8539,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-08-16T05:30:05+00:00"
+            "time": "2022-08-18T04:04:02+00:00"
         }
     ],
     "packages-dev": [
@@ -9285,16 +9285,16 @@
         },
         {
             "name": "laravel/sail",
-            "version": "v1.15.3",
+            "version": "v1.15.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/sail.git",
-                "reference": "7e7222ef0b0d7f0a0b9635543c0d7d09ef720cf1"
+                "reference": "853dea1fa866a52a93beccc4e5affdc49b98e7d5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/sail/zipball/7e7222ef0b0d7f0a0b9635543c0d7d09ef720cf1",
-                "reference": "7e7222ef0b0d7f0a0b9635543c0d7d09ef720cf1",
+                "url": "https://api.github.com/repos/laravel/sail/zipball/853dea1fa866a52a93beccc4e5affdc49b98e7d5",
+                "reference": "853dea1fa866a52a93beccc4e5affdc49b98e7d5",
                 "shasum": ""
             },
             "require": {
@@ -9341,7 +9341,7 @@
                 "issues": "https://github.com/laravel/sail/issues",
                 "source": "https://github.com/laravel/sail"
             },
-            "time": "2022-08-16T14:53:54+00:00"
+            "time": "2022-08-17T13:17:15+00:00"
         },
         {
             "name": "maximebf/debugbar",
@@ -11647,5 +11647,5 @@
         "php": "^8.0.2"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.2.0"
+    "plugin-api-version": "2.3.0"
 }

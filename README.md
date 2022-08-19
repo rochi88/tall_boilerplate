@@ -2,6 +2,9 @@
 https://geisi.dev/blog/combining-laravel-jetstream-with-spatie-permissions/
 
 
+https://github.com/dcblogdev/laravel-admintw
+
+
 ### Install application
 ```
 cp .env.example .env
