@@ -21,10 +21,10 @@ Route::get('/', function () {
 
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth', 'activeUser', 'IpCheckMiddleware'])->name('dashboard');
+})->middleware(['auth', 'activeUser'])->name('dashboard');
 
 //authenticated
-Route::middleware(['web', 'auth', 'activeUser', 'IpCheckMiddleware'])->prefix('admin')->group(function () {
+Route::middleware(['web', 'auth', 'activeUser'])->prefix('admin')->group(function () {
     Route::get('/', Dashboard::class)->name('admin');
     // Route::get('users', Users::class)->name('admin.users.index');
     // Route::get('users/{user}/edit', EditUser::class)->name('admin.users.edit');

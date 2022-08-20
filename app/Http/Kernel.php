@@ -68,7 +68,7 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
 
         'activeUser' => ActiveUser::class,
-        'IpCheckMiddleware' => IpCheckMiddleware::class,
+        // 'IpCheckMiddleware' => IpCheckMiddleware::class,
 
         'role'  => \Spatie\Permission\Middlewares\RoleMiddleware::class,
         'permission' => \Spatie\Permission\Middlewares\PermissionMiddleware::class,

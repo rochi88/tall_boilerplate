@@ -12192,6 +12192,18 @@
         {
                         return \Illuminate\Http\Request::hasValidSignatureWhileIgnoring($ignoreQuery, $absolute);
         }
+                    /**
+         * 
+         *
+         * @see \Spatie\Enum\Laravel\Http\EnumRequest::transformEnums()
+         * @param array $transformations
+         * @return void 
+         * @static 
+         */ 
+        public static function transformEnums($transformations)
+        {
+                        \Illuminate\Http\Request::transformEnums($transformations);
+        }
          
     }
             /**
@@ -13353,6 +13365,18 @@
         {
                         /** @var \Illuminate\Routing\Router $instance */
                         return $instance->macroCall($method, $parameters);
+        }
+                    /**
+         * 
+         *
+         * @see \Spatie\Enum\Laravel\EnumServiceProvider::registerRouteBindingMacro()
+         * @param string $key
+         * @param string $class
+         * @static 
+         */ 
+        public static function enum($key, $class)
+        {
+                        return \Illuminate\Routing\Router::enum($key, $class);
         }
          
     }
@@ -20396,6 +20420,18 @@
         {
                         return \Illuminate\Http\Request::hasValidSignatureWhileIgnoring($ignoreQuery, $absolute);
         }
+                    /**
+         * 
+         *
+         * @see \Spatie\Enum\Laravel\Http\EnumRequest::transformEnums()
+         * @param array $transformations
+         * @return void 
+         * @static 
+         */ 
+        public static function transformEnums($transformations)
+        {
+                        \Illuminate\Http\Request::transformEnums($transformations);
+        }
          
     }
             /**
@@ -20494,6 +20530,26 @@
 }
 
     namespace Illuminate\Routing { 
+            /**
+     * 
+     *
+     * @mixin \Illuminate\Routing\RouteRegistrar
+     */ 
+        class Router {
+                    /**
+         * 
+         *
+         * @see \Spatie\Enum\Laravel\EnumServiceProvider::registerRouteBindingMacro()
+         * @param string $key
+         * @param string $class
+         * @static 
+         */ 
+        public static function enum($key, $class)
+        {
+                        return \Illuminate\Routing\Router::enum($key, $class);
+        }
+         
+    }
             /**
      * 
      *
