@@ -24,7 +24,8 @@ return new class extends Migration
             // $table->string('profile_photo_path', 2048)->nullable();
             // $table->timestamps();
 
-            $table->uuid('id')->primary();
+            $table->id();
+            $table->uuid('uuid')->nullable()->unique();
             $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
@@ -39,7 +40,7 @@ return new class extends Migration
             $table->timestamp('last_logged_in_at')->nullable();
             $table->string('two_fa_active')->default('No');
             $table->string('two_fa_secret_key')->nullable();
-            $table->uuid('invited_by')->nullable();
+            $table->foreignId('invited_by')->nullable();
             $table->timestamp('invited_at')->nullable();
             $table->timestamp('joined_at')->nullable();
             $table->string('invite_token')->nullable();

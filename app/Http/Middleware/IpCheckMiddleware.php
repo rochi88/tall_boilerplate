@@ -30,7 +30,7 @@ class IpCheckMiddleware
                 }
 
                 if (!in_array($request->ip(), $approved, true) && auth()->user()->is_office_login_only === 1) {
-                    flash('Sorry, the system cannot be accessed from your location.')->warning();
+                    flash()->error('Sorry, the system cannot be accessed from your location.');
 
                     Auth::guard()->logout();
 

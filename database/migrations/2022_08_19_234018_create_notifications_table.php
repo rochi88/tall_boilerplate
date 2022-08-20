@@ -14,15 +14,15 @@ return new class extends Migration
     public function up()
     {
         Schema::create('notifications', function (Blueprint $table) {
-            $table->uuid('id')->primary();
+            $table->id();
             $table->string('type');
             $table->morphs('notifiable');
             $table->text('data');
             $table->timestamp('read_at')->nullable();
             $table->timestamps();
 
-            $table->uuid('assigned_to_user_id')->default(0);
-            $table->uuid('assigned_from_user_id')->default(0);
+            $table->foreignId('assigned_to_user_id')->default(0);
+            $table->foreignId('assigned_from_user_id')->default(0);
             $table->string('link')->nullable();
         });
     }

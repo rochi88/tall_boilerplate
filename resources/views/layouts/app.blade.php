@@ -11,19 +11,19 @@
         <!-- Fonts -->
         <link rel="stylesheet" href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap">
 
+        @wireUiScripts
+
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
 
         <!-- Styles -->
         @livewireStyles
         @powerGridStyles
-        @wireUiScripts
-
         <style>
             [x-cloak] {
                 display: none !important;
             }
-    </style>
+        </style>
     </head>
     {{-- <body class="font-sans antialiased">
         <x-jet-banner />
@@ -51,30 +51,30 @@
 
         @livewireScripts
         @powerGridScripts
-        <x-livewire-alert::scripts />
     </body> --}}
     <body class="font-sans antialiased">
-     @include('test')
+      <x-notifications />
+      <x-flash::message />
+      @include('test')
 
-    @stack('modals')
+      @stack('modals')
 
-    @livewireScripts
-    @powerGridScripts
-    <x-livewire-alert::scripts />
-    <script>
-      const setup = () => {
-        return {
-          isSidebarOpen: false,
-          currentSidebarTab: null,
-          isSettingsPanelOpen: false,
-          isSubHeaderOpen: false,
-          watchScreen() {
-            if (window.innerWidth <= 1024) {
-              this.isSidebarOpen = false
-            }
-          },
+      @livewireScripts
+      @powerGridScripts
+      <script>
+        const setup = () => {
+          return {
+            isSidebarOpen: false,
+            currentSidebarTab: null,
+            isSettingsPanelOpen: false,
+            isSubHeaderOpen: false,
+            watchScreen() {
+              if (window.innerWidth <= 1024) {
+                this.isSidebarOpen = false
+              }
+            },
+          }
         }
-      }
-    </script>
+      </script>
     </body>
 </html>

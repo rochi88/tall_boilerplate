@@ -13,7 +13,6 @@ use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Jetstream\HasTeams;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
-use App\Models\Traits\HasUuid;
 
 class User extends Authenticatable
 {
@@ -24,7 +23,6 @@ class User extends Authenticatable
     use Notifiable;
     use TwoFactorAuthenticatable;
     use HasRoles;
-    use HasUuid;
     use SoftDeletes;
 
     public string $section    = 'Users';

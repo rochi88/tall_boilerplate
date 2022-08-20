@@ -2,23 +2,15 @@
 
 namespace App\Models;
 
-use App\Models\Traits\HasUuid;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Database\Factories\NotificationFactory;
 
 class Notification extends Model
 {
     use HasFactory;
-    use HasUuid;
 
     protected $guarded = [];
-
-    protected static function newFactory(): NotificationFactory
-    {
-        return NotificationFactory::new();
-    }
 
     public function assignedTo(): BelongsTo
     {

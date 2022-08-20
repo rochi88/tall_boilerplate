@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "221276fd61df8ffe719b6151f5aba48f",
+    "content-hash": "3933ca5e9302be87c0c716edd98958d9",
     "packages": [
         {
             "name": "bacon/bacon-qr-code",
@@ -1585,74 +1585,6 @@
             "time": "2022-05-21T17:30:32+00:00"
         },
         {
-            "name": "jantinnerezo/livewire-alert",
-            "version": "2.2.6",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/jantinnerezo/livewire-alert.git",
-                "reference": "352d13719741fce537893bd9372504385bc99d5c"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/jantinnerezo/livewire-alert/zipball/352d13719741fce537893bd9372504385bc99d5c",
-                "reference": "352d13719741fce537893bd9372504385bc99d5c",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/support": "^5.5 || ^6.0 || ^7.0 || ^8.0 || ^9.0",
-                "livewire/livewire": "^2.0",
-                "php": "^7.4|^8.0"
-            },
-            "require-dev": {
-                "orchestra/testbench": "^6.15",
-                "phpunit/phpunit": "^9.5"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Jantinnerezo\\LivewireAlert\\LivewireAlertServiceProvider"
-                    ],
-                    "aliases": {
-                        "LivewireAlert": "Jantinnerezo\\LivewireAlert\\LivewireAlertFacade"
-                    }
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Jantinnerezo\\LivewireAlert\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Jantinn Erezo",
-                    "email": "erezojantinn@gmail.com",
-                    "role": "Developer"
-                }
-            ],
-            "description": "This package provides a simple alert utilities for your livewire components.",
-            "homepage": "https://github.com/jantinnerezo/livewire-alert",
-            "keywords": [
-                "jantinnerezo",
-                "livewire-alert"
-            ],
-            "support": {
-                "issues": "https://github.com/jantinnerezo/livewire-alert/issues",
-                "source": "https://github.com/jantinnerezo/livewire-alert/tree/2.2.6"
-            },
-            "funding": [
-                {
-                    "url": "https://www.paypal.com/paypalme/jantinn",
-                    "type": "custom"
-                }
-            ],
-            "time": "2022-03-15T17:39:01+00:00"
-        },
-        {
             "name": "jaybizzle/crawler-detect",
             "version": "v1.2.111",
             "source": {
@@ -1786,6 +1718,60 @@
                 }
             ],
             "time": "2020-06-13T08:05:20+00:00"
+        },
+        {
+            "name": "josegus/laravel-flash",
+            "version": "1.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/josegus/laravel-flash.git",
+                "reference": "76148ea4fc818499f485d9ad99f15cfed60f1185"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/josegus/laravel-flash/zipball/76148ea4fc818499f485d9ad99f15cfed60f1185",
+                "reference": "76148ea4fc818499f485d9ad99f15cfed60f1185",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/session": "^9.0",
+                "php": "^8.0"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^3.0",
+                "orchestra/testbench": "^7.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "JoseGus\\LaravelFlash\\LaravelFlashServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "files": [
+                    "helpers/flash.php"
+                ],
+                "psr-4": {
+                    "JoseGus\\LaravelFlash\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Gustavo",
+                    "email": "jgvv15@gmail.com"
+                }
+            ],
+            "support": {
+                "issues": "https://github.com/josegus/laravel-flash/issues",
+                "source": "https://github.com/josegus/laravel-flash/tree/1.3.0"
+            },
+            "time": "2022-06-13T00:09:16+00:00"
         },
         {
             "name": "laravel/fortify",

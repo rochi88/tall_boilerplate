@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Crud;
+use App\Http\Livewire\Admin\Dashboard;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,14 +21,14 @@ Route::get('/', function () {
 
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+})->middleware(['auth', 'activeUser', 'IpCheckMiddleware'])->name('dashboard');
 
 //authenticated
 Route::middleware(['web', 'auth', 'activeUser', 'IpCheckMiddleware'])->prefix('admin')->group(function () {
     Route::get('/', Dashboard::class)->name('admin');
-    Route::get('users', Users::class)->name('admin.users.index');
-    Route::get('users/{user}/edit', EditUser::class)->name('admin.users.edit');
-    Route::get('users/{user}', ShowUser::class)->name('admin.users.show');
+    // Route::get('users', Users::class)->name('admin.users.index');
+    // Route::get('users/{user}/edit', EditUser::class)->name('admin.users.edit');
+    // Route::get('users/{user}', ShowUser::class)->name('admin.users.show');
 
 });
 
