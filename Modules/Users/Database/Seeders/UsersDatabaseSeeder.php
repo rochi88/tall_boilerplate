@@ -1,29 +1,22 @@
 <?php
 
-namespace Database\Seeders;
+namespace Modules\Users\Database\Seeders;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Actions\Fortify\CreateNewUser;
 use Illuminate\Database\Seeder;
-use App\Models\Team;
-use App\Models\User;
+use App\Actions\Fortify\CreateNewUser;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
-class UserDatabaseSeeder extends Seeder
+class UsersDatabaseSeeder extends Seeder
 {
     public function run()
     {
         Model::unguard();
 
-        // $user = User::create([
-        //     'name'                 => 'Lara',
-        //     'email'                => 'user@domain.com',
-        //     'password'             => bcrypt('password'),
-        //     'email_verified_at'    => session('teamInvitation') ? now() : null,
-        //     'is_active'            => 1,
-        //     'is_office_login_only' => 0
-        // ]);
+        $this->call([
+            UsersPermissionSeeder::class
+        ]);
 
         $superadmin = Role::firstOrCreate(['name' => 'superadmin','team_id' => null]);
         $admin = Role::firstOrCreate(['name' => 'admin','team_id' => 1]);

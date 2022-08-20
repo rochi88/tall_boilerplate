@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Observers;
+namespace Modules\Core\Observers;
 
-use App\Models\Setting;
 use Log;
+use Modules\Core\Entities\Setting;
 
 class SettingObserver
 {

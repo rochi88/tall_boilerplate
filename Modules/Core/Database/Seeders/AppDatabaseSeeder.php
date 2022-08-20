@@ -1,10 +1,10 @@
 <?php
 
-namespace Database\Seeders;
+namespace Modules\Core\Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Setting;
+use Modules\Core\Entities\Setting;
 
 class AppDatabaseSeeder extends Seeder
 {
