@@ -13,6 +13,7 @@ use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Jetstream\HasTeams;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
+use Illuminate\Support\Facades\Cache;
 
 class User extends Authenticatable
 {
@@ -80,5 +81,15 @@ class User extends Authenticatable
     public function invite(): HasOne
     {
         return $this->hasOne(__CLASS__, 'id', 'invited_by');
+    }
+
+    /**
+     * flush Cache
+     *
+     * @return void
+     */
+    public static function flushCache()
+    {
+        Cache::forget('users.all');
     }
 }

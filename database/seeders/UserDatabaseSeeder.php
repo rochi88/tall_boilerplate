@@ -14,7 +14,7 @@ class UserDatabaseSeeder extends Seeder
         Model::unguard();
 
         $user = User::create([
-            'name'                 => 'Username',
+            'name'                 => 'Lara',
             'email'                => 'user@domain.com',
             'password'             => bcrypt('password'),
             'email_verified_at'    => session('teamInvitation') ? now() : null,
