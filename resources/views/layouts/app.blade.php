@@ -1,31 +1,33 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
-        <meta name="turbo-visit-control" content="reload">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="turbo-visit-control" content="reload">
 
-        <!-- Fonts -->
-        <link rel="stylesheet" href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap">
+    <title>{{ config('app.name', 'Laravel') }}</title>
 
-        @wireUiScripts
+    <!-- Fonts -->
+    <link rel="stylesheet" href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap">
 
-        <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @wireUiScripts
 
-        <!-- Styles -->
-        @livewireStyles
-        @powerGridStyles
-        <style>
-            [x-cloak] {
-                display: none !important;
-            }
-        </style>
-    </head>
-    {{-- <body class="font-sans antialiased">
+    <!-- Scripts -->
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+    <!-- Styles -->
+    @livewireStyles
+    @powerGridStyles
+
+    <style>
+        [x-cloak] {
+            display: none !important;
+        }
+    </style>
+</head>
+{{-- <body class="font-sans antialiased">
         <x-jet-banner />
 
         <div class="min-h-screen bg-gray-100">
@@ -52,29 +54,31 @@
         @livewireScripts
         @powerGridScripts
     </body> --}}
-    <body class="font-sans antialiased">
-      <x-notifications />
-      <x-flash::message />
-      @include('test')
 
-      @stack('modals')
+<body class="font-sans antialiased">
+    <x-notifications />
+    <x-flash::message />
+    @include('test')
 
-      @livewireScripts
-      @powerGridScripts
-      <script>
+    @stack('modals')
+
+    @livewireScripts
+    @powerGridScripts
+    <script>
         const setup = () => {
-          return {
-            isSidebarOpen: false,
-            currentSidebarTab: null,
-            isSettingsPanelOpen: false,
-            isSubHeaderOpen: false,
-            watchScreen() {
-              if (window.innerWidth <= 1024) {
-                this.isSidebarOpen = false
-              }
-            },
-          }
+            return {
+                isSidebarOpen: false,
+                currentSidebarTab: null,
+                isSettingsPanelOpen: false,
+                isSubHeaderOpen: false,
+                watchScreen() {
+                    if (window.innerWidth <= 1024) {
+                        this.isSidebarOpen = false
+                    }
+                },
+            }
         }
-      </script>
-    </body>
+    </script>
+</body>
+
 </html>
