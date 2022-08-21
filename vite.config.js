@@ -21,7 +21,7 @@ export default defineConfig({
                 short_name: process.env.PWA_SHORT_NAME,
                 description: process.env.PWA_DESCRIPTION,
                 theme_color: process.env.PWA_THEME_COLOR,
-                start_url: '/?standalone=true',
+                start_url: '/',
                 icons: [
                     {
                         "src": "android-chrome-192x192.png",
