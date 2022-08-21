@@ -15,22 +15,8 @@ export default defineConfig({
             ],
         }),
         VitePWA({
-            strategies: 'injectManifest',
-            devOptions: {
-                enabled: false, // Enable to test the service worker
-                type: 'classic'
-            },
-            base: '/',
-            filename: 'sw.js',
-            registerType: 'autoUpdate',
-            scope: '/',
-            outDir: 'public',
-            srcDir: 'resources/js',
-            injectManifest: {
-                swDest: process.env.APP_ENV == 'production' ? 'public/sw.js' : 'public/dev-sw.js'
-            },
             manifest: {
-                id: (process.env.APP_NAME)?.split('_').map(str => str.charAt(0).toLowerCase() + str.slice(1)).join('-'),
+                id: (process.env.APP_NAME)?.split(' ').map(str => str.charAt(0).toLowerCase() + str.slice(1)).join('-'),
                 name: process.env.APP_NAME,
                 short_name: process.env.PWA_SHORT_NAME,
                 description: process.env.PWA_DESCRIPTION,
