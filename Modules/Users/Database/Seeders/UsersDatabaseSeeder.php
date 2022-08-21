@@ -31,7 +31,7 @@ class UsersDatabaseSeeder extends Seeder
         $userrole->revokePermissionTo(['add_users', 'edit_users', 'delete_users']);
 
         $user = (new CreateNewUser())->create([
-            'name'                 => 'Lara',
+            'name'                 => 'Lara_lab',
             'email'                => 'user@domain.com',
             'password'             => 'password',
             'password_confirmation'=> 'password',

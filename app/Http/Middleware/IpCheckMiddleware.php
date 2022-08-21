@@ -2,10 +2,10 @@
 
 namespace App\Http\Middleware;
 
-use App\Models\Setting;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Modules\Core\Entities\Setting;
 
 class IpCheckMiddleware
 {
@@ -29,7 +29,7 @@ class IpCheckMiddleware
                     $approved[] = $row['ip'];
                 }
 
-                if (!in_array($request->ip(), $approved, true) && auth()->user()->is_office_login_only === 1) {
+                if (in_array($request->ip(), $approved, true) && auth()->user()->is_office_login_only === 1) {
                     flash()->error('Sorry, the system cannot be accessed from your location.');
 
                     Auth::guard()->logout();

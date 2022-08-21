@@ -17,7 +17,7 @@ class AppDatabaseSeeder extends Seeder
         Setting::firstOrCreate(['key' => 'applicationLogoDark'], ['value' => 'logo/A9dQcvFuzYLCVUfzrwqnSxN6RLKuCNDhjHwEVN3t.png']);
         Setting::firstOrCreate(['key' => 'loginLogo'], ['value' => 'logo/xbC28LrLRPgFQs3D4QEdTHnaJbGbT1QuCxnoxAAu.png']);
         Setting::firstOrCreate(['key' => 'loginLogoDark'], ['value' => 'logo/xbC28LrLRPgFQs3D4QEdTHnaJbGbT1QuCxnoxAAu.png']);
-        Setting::firstOrCreate(['key' => 'ips'], ['value' => '[{"ip":"127.0.0.1","comment":"local"}]']);
+        Setting::firstOrCreate(['key' => 'ips'], ['value' => '[{"ip":"192.168.2.3","comment":"local"}]']);
         Setting::firstOrCreate(['key' => 'forced_2fa'], ['value' => '']);
     }
 }

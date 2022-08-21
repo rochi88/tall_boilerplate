@@ -14,9 +14,11 @@ use Laravel\Jetstream\HasTeams;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Support\Facades\Cache;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
-class User extends Authenticatable
-{
+class User extends Authenticatable implements HasMedia {
+    use InteractsWithMedia;
     use HasApiTokens;
     use HasFactory;
     use HasProfilePhoto;
@@ -67,6 +69,12 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection('avatars')
+            ->useFallbackUrl('https://www.gravatar.com/avatar/' . md5($this->attributes['email']));
+    }
 
     public function route($id): string
     {

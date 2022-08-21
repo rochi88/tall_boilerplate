@@ -1,12 +1,6 @@
-### Combining Laravel Jetstream Teams with Spatie Permission
-https://geisi.dev/blog/combining-laravel-jetstream-with-spatie-permissions/
-
-
-https://github.com/dcblogdev/laravel-admintw
-
-
-### Install application
+# Install application
 ```
+git clone https://github.com/rochi88/lara_lab.git
 cp .env.example .env
 composer update
 php artisan key:generate
@@ -19,3 +13,8 @@ php artisan serve
 npm i
 npm run dev
 ```
+
+Now visit `` http://localhost:8000 or http://127.0.0.1:8000 ``
+
+# Admin Credentials
+> Email: user@domain.com || Password: password
