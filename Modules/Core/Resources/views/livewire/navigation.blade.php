@@ -155,7 +155,7 @@
 
         <!-- Links -->
         <div class="flex-1 px-4 space-y-2 overflow-hidden hover:overflow-auto">
-            <a href="#" class="flex items-center w-full space-x-2 text-white bg-indigo-600 rounded-lg">
+            <a href="{{ route('dashboard') }}" class="flex items-center w-full space-x-2 text-white bg-indigo-600 rounded-lg">
                 <span aria-hidden="true" class="p-2 bg-indigo-700 rounded-lg">
                     <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor">
@@ -165,7 +165,7 @@
                 </span>
                 <span>Home</span>
             </a>
-            <a href="#"
+            {{-- <a href="#"
                 class="flex items-center space-x-2 text-indigo-600 transition-colors rounded-lg group hover:bg-indigo-600 hover:text-white">
                 <span aria-hidden="true"
                     class="p-2 transition-colors rounded-lg group-hover:bg-indigo-700 group-hover:text-white">
@@ -176,6 +176,6 @@
                     </svg>
                 </span>
                 <span>Pages</span>
-            </a>
+            </a> --}}
         </div>
     </nav>
