@@ -15,7 +15,9 @@
 
     <!-- Logo -->
     <a href="#">
-        <img class="w-10 h-auto" :src="'apple-touch-icon.png'" alt="{{ config('app.name') }}" />
+        <img class="w-10 h-auto"
+            src="https://raw.githubusercontent.com/kamona-ui/dashboard-alpine/main/public/assets/images/logo.png"
+            alt="{{ config('app.name') }}" />
     </a>
 
     <!-- User avatar button -->
@@ -174,4 +176,4 @@
             </a> --}}
         </div>
     </nav>
-
+</div>

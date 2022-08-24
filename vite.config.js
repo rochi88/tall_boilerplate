@@ -1,6 +1,6 @@
 import { defineConfig } from 'vite';
 import laravel, { refreshPaths } from 'laravel-vite-plugin';
-// import { VitePWA } from 'vite-plugin-pwa'
+import { VitePWA } from 'vite-plugin-pwa'
 
 export default defineConfig({
     plugins: [
@@ -14,7 +14,12 @@ export default defineConfig({
                 'app/Http/Livewire/**',
             ],
         }),
-        // VitePWA(),
+        VitePWA({ 
+            registerType: 'autoUpdate',
+            devOptions: {
+              enabled: true
+            }
+        })
         // VitePWA({
         //     strategies: 'injectManifest',
         //     devOptions: {
