@@ -5,6 +5,9 @@
         "build": "vite build"
     },
     "devDependencies": {
+        "@alpinejs/collapse": "^3.10.3",
+        "@alpinejs/mask": "^3.10.3",
+        "@alpinejs/persist": "^3.10.3",
         "@hotwired/turbo": "^7.2.0-beta.2",
         "@tailwindcss/forms": "^0.5.2",
         "@tailwindcss/typography": "^0.5.0",

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -30,6 +31,12 @@ class User extends Authenticatable implements HasMedia {
 
     public string $section    = 'Users';
     public array  $searchable = ['name', 'email'];
+
+    protected $with = [
+        // 'media',
+        // 'permissions',
+        // 'roles',
+    ];
 
     /**
      * The attributes that are mass assignable.
@@ -59,6 +66,7 @@ class User extends Authenticatable implements HasMedia {
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'is_active' => 'boolean',
     ];
 
     /**
@@ -99,5 +107,29 @@ class User extends Authenticatable implements HasMedia {
     public static function flushCache()
     {
         Cache::forget('users.all');
+    }
+
+    /**
+     * @return HasOne
+     */
+    public function parent(): HasOne
+    {
+        return $this->hasOne(User::class, 'id', 'parent_id');
+    }
+
+    /**
+     * @return BelongsToMany
+     */
+    public function tags(): BelongsToMany
+    {
+        return $this->belongsToMany(Tag::class);
+    }
+
+    /**
+     * @return HasOne
+     */
+    public function address(): HasOne
+    {
+        return $this->hasOne(Address::class);
     }
 }
