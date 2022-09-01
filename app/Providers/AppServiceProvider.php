@@ -5,7 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 use App\Models\User;
-use Modules\Core\Entities\Setting;
+use App\Models\Setting;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -39,6 +39,6 @@ class AppServiceProvider extends ServiceProvider
 
         // Model observer for flush cache
         User::observe(\App\Observers\UserObserver::class);
-        Setting::observe(\Modules\Core\Observers\SettingObserver::class);
+        Setting::observe(\App\Observers\SettingObserver::class);
     }
 }

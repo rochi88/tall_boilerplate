@@ -1,12 +1,10 @@
 <?php
 
-use App\Models\AddressGroup;
-use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAddressesTable extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
@@ -15,12 +13,12 @@ class CreateAddressesTable extends Migration
      */
     public function up()
     {
-        Schema::create('addresses', function (Blueprint $table) {
+        Schema::create('tests', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(User::class);
-            $table->foreignIdFor(AddressGroup::class);
-            $table->string('name');
-            $table->string('address');
+            $table->string('name', 100);
+            $table->string('email')->nullable();
+            $table->string('mobile')->nullable();      
+            $table->text('description')->nullable();         
             $table->timestamps();
         });
     }
@@ -32,6 +30,6 @@ class CreateAddressesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('addresses');
+        Schema::dropIfExists('students');
     }
-}
+};

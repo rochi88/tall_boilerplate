@@ -34,8 +34,6 @@ class User extends Authenticatable implements HasMedia {
 
     protected $with = [
         // 'media',
-        // 'permissions',
-        // 'roles',
     ];
 
     /**

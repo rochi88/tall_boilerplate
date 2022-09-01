@@ -17,4 +17,5 @@
     {{-- <livewire:power-grid-demo-table/> --}}
     {{-- <livewire:users-table/>
     <livewire:roles-table/> --}}
+    {{-- <livewire:show-jobs/> --}}
 </x-app-layout>

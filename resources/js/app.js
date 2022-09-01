@@ -9,6 +9,7 @@ window.Alpine = Alpine;
 Alpine.plugin(mask)
 Alpine.plugin(collapse);
 Alpine.plugin(persist);
+
 Alpine.start();
 
 

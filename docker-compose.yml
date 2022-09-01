@@ -1,0 +1,92 @@
+version: '3.1'
+
+services:
+  #PHP Service
+  tall:
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile
+    image: digitalocean.com/php
+    container_name: tall
+    restart: unless-stopped
+    tty: true
+    environment:
+      SERVICE_NAME: tall
+      SERVICE_TAGS: dev
+    working_dir: /var/www
+    volumes:
+      - ./:/var/www
+      - ./docker/php/local.ini:/usr/local/etc/php/conf.d/local.ini
+    networks:
+      - tall-network
+
+  #Nginx Service
+  tallwebserver:
+    image: nginx:alpine
+    container_name: tallwebserver
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./:/var/www
+      - ./docker/nginx/conf.d/:/etc/nginx/conf.d/
+    depends_on:
+      - tall
+      - talldb
+    networks:
+      - tall-network
+
+  #MySQL Service
+  talldb:
+    image: mysql:5.7.22
+    container_name: talldb
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "3306:3306"
+    # env_file:
+    #   - .env.docker
+    environment:
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      SERVICE_TAGS: dev
+      SERVICE_NAME: mysql
+    volumes:
+      - talldbdata:/var/lib/mysql
+      - ./docker/mysql/my.cnf:/etc/mysql/my.cnf
+    networks:
+      - tall-network
+
+  # Phpmyadmin
+  tallphpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: talladmin
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      PMA_HOST: talldb
+      PMA_PORT: 3306
+      PMA_ARBITRARY: 1
+    restart: unless-stopped
+    depends_on:
+      - talldb
+    ports:
+    - "8080:80"
+    networks:
+      - tall-network
+    links:
+      - talldb
+
+#Docker Networks
+networks:
+  tall-network:
+    driver: bridge
+    
+#Volumes
+volumes:
+  talldbdata:
+    driver: local # Use on linux
+    # external: true # Use on Windows WSL2 for Slow Docker

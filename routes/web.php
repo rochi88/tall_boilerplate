@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Livewire\Backend\Dashboard;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,8 +18,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'activeUser', 'IpCheckMiddleware'])->name('dashboard');
+Route::get('/dashboard', Dashboard::class)->middleware(['auth', 'activeUser'])->name('dashboard');
 
 require __DIR__.'/auth.php';

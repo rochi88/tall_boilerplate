@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\City;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -15,7 +16,7 @@ class CreateAddressGroupsTable extends Migration
     {
         Schema::create('address_groups', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('city_id');
+            $table->foreignIdFor(City::class);
             $table->string('name');
             $table->timestamps();
         });
