@@ -73,7 +73,7 @@ class UserDatabaseSeederTest extends Seeder
         $user = Jetstream::findUserByEmailOrFail('owner@domain.com');
 
         foreach ($users as $name => $email) {
-            if (!(($name === 'owner') || ($name === 'superadmin') || ($name === 'admin'))) {
+            if (!($name == 'owner' || $name == 'superadmin' || $name == 'admin')) {
                 $team->users()->attach(
                     Jetstream::findUserByEmailOrFail($email),
                     ['role' => $name]

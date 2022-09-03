@@ -17,7 +17,7 @@
         "power-components/livewire-powergrid": "^3.2",
         "spatie/laravel-backup": "^8.1",
         "spatie/laravel-enum": "^3.0",
-        "spatie/laravel-medialibrary": "^10.3",
+        "spatie/laravel-medialibrary": "^10.4",
         "spatie/laravel-permission": "^5.5",
         "wireui/wireui": "^1.13"
     },
