@@ -22,7 +22,7 @@ class ShowJobs extends Component
     public function render()
     {
         return view('livewire.show-jobs', [
-            'jobs' => Test::where('name', 'like', '%'.$this->search.'%')->paginate(5)
+            'jobs' => Test::where('name', 'like', '%'.$this->search.'%')->paginate(5),
         ]);
     }
 }

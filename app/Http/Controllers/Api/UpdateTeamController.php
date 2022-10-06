@@ -15,11 +15,11 @@ class UpdateTeamController extends Controller
     public function __invoke(Request $request, Team $team): Team
     {
         $data = $request->validate([
-            'name' => ['string', 'required', 'max:255'],
-            'memberships' => ['array', 'sometimes'],
+            'name'                  => ['string', 'required', 'max:255'],
+            'memberships'           => ['array', 'sometimes'],
             'memberships.*.user_id' => ['required', 'integer', 'exists:users,id'],
-            'memberships.*.roles' => ['present', 'array'],
-            'memberships.*.roles.*' => ['string', Rule::exists('roles', 'name')->where('guard_name', 'web')]
+            'memberships.*.roles'   => ['present', 'array'],
+            'memberships.*.roles.*' => ['string', Rule::exists('roles', 'name')->where('guard_name', 'web')],
         ]);
 
         DB::transaction(function () use (&$team, $data, $request) {
@@ -41,8 +41,8 @@ class UpdateTeamController extends Controller
                     $user->syncRoles($membership['roles']);
                 });
             }
-
         });
+
         return $team;
     }
 }

@@ -3,20 +3,20 @@
 namespace App\Http\Livewire\Auth;
 
 use App\Models\User;
-use Livewire\Component;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Auth\Events\Authenticated;
-use DanHarrin\LivewireRateLimiting\WithRateLimiting;
 use DanHarrin\LivewireRateLimiting\Exceptions\TooManyRequestsException;
+use DanHarrin\LivewireRateLimiting\WithRateLimiting;
+use Illuminate\Auth\Events\Authenticated;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Livewire\Component;
 
 class Login extends Component
 {
     use WithRateLimiting;
-    
-    public $email = "";
 
-    public $password = "";
+    public $email = '';
+
+    public $password = '';
 
     public function authenticate()
     {
@@ -24,11 +24,12 @@ class Login extends Component
             $this->rateLimit(10);
         } catch (TooManyRequestsException $exception) {
             $this->addError('auth', "Slow down! Please wait another $exception->secondsUntilAvailable seconds to attempt to log in.");
+
             return;
         }
 
         $this->validate([
-            'email' => ['required', 'email', 'exists:users,email'],
+            'email'    => ['required', 'email', 'exists:users,email'],
             'password' => ['required'],
         ]);
 
@@ -40,31 +41,31 @@ class Login extends Component
         // if not, just show errors
         // if they do, proceed to two factor auth challenge
         // the login id and remember are stored in session so we can do things after
-        if($user && Hash::check($this->password, $user->password)) {
+        if ($user && Hash::check($this->password, $user->password)) {
             $success = true;
         }
 
-        if(!$success) {
+        if (!$success) {
             $this->addError('auth', 'The given email/password combo did not match any accounts, please try again.');
 
             return;
-        } 
+        }
 
         session()->put([
-            'login.id' => $user->getKey(),
+            'login.id'       => $user->getKey(),
             'login.remember' => true,
         ]);
 
-        if($user->twoFactorAuthEnabled()) {
-            return redirect()->route('two-factor.login');        
+        if ($user->twoFactorAuthEnabled()) {
+            return redirect()->route('two-factor.login');
         } else {
             Auth::attempt([
-                'email' => $this->email,
-                'password' => $this->password
+                'email'    => $this->email,
+                'password' => $this->password,
             ], true);
 
             event(new Authenticated('web', User::where('email', $this->email)->first()));
-            
+
             return redirect()->intended(route('dashboard'));
         }
     }

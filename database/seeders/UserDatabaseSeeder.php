@@ -2,12 +2,10 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Database\Seeder;
 use App\Actions\Fortify\CreateNewUser;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
@@ -27,10 +25,9 @@ class UserDatabaseSeeder extends Seeder
 
         $permissions = Permission::all();
 
-
-        $superadmin = Role::firstOrCreate(['name' => 'superadmin','team_id' => null]);
-        $admin = Role::firstOrCreate(['name' => 'admin','team_id' => 1]);
-        $userrole = Role::firstOrCreate(['name' => 'user','team_id' => 1]);
+        $superadmin = Role::firstOrCreate(['name' => 'superadmin', 'team_id' => null]);
+        $admin = Role::firstOrCreate(['name' => 'admin', 'team_id' => 1]);
+        $userrole = Role::firstOrCreate(['name' => 'user', 'team_id' => 1]);
 
         $superadmin->givePermissionTo($permissions);
         $admin->givePermissionTo($permissions);
@@ -45,16 +42,16 @@ class UserDatabaseSeeder extends Seeder
             'password_confirmation'=> 'password',
             'email_verified_at'    => session('teamInvitation') ? now() : null,
             'is_active'            => 1,
-            'is_office_login_only' => 0
+            'is_office_login_only' => 0,
         ]);
 
-         // get session team_id for restore it later
-         $session_team_id = getPermissionsTeamId();
-         // set actual new team_id to package instance
-         setPermissionsTeamId($user);
-         // get the admin user and assign roles/permissions on new team model
-         $user->assignRole($superadmin);
-         // restore session team_id to package instance
-         setPermissionsTeamId($session_team_id);
+        // get session team_id for restore it later
+        $session_team_id = getPermissionsTeamId();
+        // set actual new team_id to package instance
+        setPermissionsTeamId($user);
+        // get the admin user and assign roles/permissions on new team model
+        $user->assignRole($superadmin);
+        // restore session team_id to package instance
+        setPermissionsTeamId($session_team_id);
     }
 }

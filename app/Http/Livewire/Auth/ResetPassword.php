@@ -2,13 +2,12 @@
 
 namespace App\Http\Livewire\Auth;
 
-use Livewire\Component;
-use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Password;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Support\Facades\Auth;
-use Mockery\Generator\StringManipulation\Pass\Pass;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Password;
+use Illuminate\Support\Str;
+use Livewire\Component;
 
 class ResetPassword extends Component
 {
@@ -30,16 +29,16 @@ class ResetPassword extends Component
     public function resetPassword()
     {
         $this->validate([
-            'token' => ['required', 'string'],
-            'email' => ['required', 'email'],
+            'token'        => ['required', 'string'],
+            'email'        => ['required', 'email'],
             'new_password' => ['required', 'confirmed', 'min:8'],
         ]);
 
         $status = Password::reset([
-            'email' => $this->email,
-            'password' => $this->new_password,
+            'email'                 => $this->email,
+            'password'              => $this->new_password,
             'password_confirmation' => $this->new_password_confirmation,
-            'token' => $this->token,
+            'token'                 => $this->token,
         ], function ($user, $password) {
             $user->forceFill([
                 'password' => Hash::make($password),

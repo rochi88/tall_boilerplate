@@ -10,7 +10,7 @@ class Setting extends Model
     protected $guarded = [];
 
     /**
-     * flush Cache
+     * flush Cache.
      *
      * @return void
      */

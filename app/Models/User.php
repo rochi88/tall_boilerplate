@@ -2,23 +2,23 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Cache;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Jetstream\HasTeams;
 use Laravel\Sanctum\HasApiTokens;
-use Spatie\Permission\Traits\HasRoles;
-use Illuminate\Support\Facades\Cache;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\Permission\Traits\HasRoles;
 
-class User extends Authenticatable implements HasMedia {
+class User extends Authenticatable implements HasMedia
+{
     use InteractsWithMedia;
     use HasApiTokens;
     use HasFactory;
@@ -29,7 +29,7 @@ class User extends Authenticatable implements HasMedia {
     use HasRoles;
     use SoftDeletes;
 
-    public string $section    = 'Users';
+    public string $section = 'Users';
     public array  $searchable = ['name', 'email'];
 
     protected $with = [
@@ -64,7 +64,7 @@ class User extends Authenticatable implements HasMedia {
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
-        'is_active' => 'boolean',
+        'is_active'         => 'boolean',
     ];
 
     /**
@@ -79,7 +79,7 @@ class User extends Authenticatable implements HasMedia {
     public function registerMediaCollections(): void
     {
         $this->addMediaCollection('avatars')
-            ->useFallbackUrl('https://www.gravatar.com/avatar/' . md5($this->attributes['email']));
+            ->useFallbackUrl('https://www.gravatar.com/avatar/'.md5($this->attributes['email']));
     }
 
     public function route($id): string
@@ -98,7 +98,7 @@ class User extends Authenticatable implements HasMedia {
     }
 
     /**
-     * flush Cache
+     * flush Cache.
      *
      * @return void
      */

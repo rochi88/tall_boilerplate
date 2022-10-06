@@ -2,9 +2,9 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Seeder;
-use Illuminate\Database\Eloquent\Model;
 use App\Models\Setting;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Permission;
 
 class AppDatabaseSeeder extends Seeder

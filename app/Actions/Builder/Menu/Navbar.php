@@ -22,27 +22,27 @@ class Navbar implements Builder, Menu
     {
         $this->menus = collect([
             [
-                'show' => auth()->user() ? false : true,
+                'show'  => auth()->user() ? false : true,
                 'route' => 'welcome',
                 'label' => 'Welcome',
             ],
             [
-                'show' => auth()->user() ? false : Route::has('register'),
+                'show'  => auth()->user() ? false : Route::has('register'),
                 'route' => 'register',
                 'label' => 'Register',
             ],
             [
-                'show' => auth()->user() ? false : true,
+                'show'  => auth()->user() ? false : true,
                 'route' => 'login',
                 'label' => 'Login',
             ],
             [
-                'show' => auth()->user() ? true : false,
+                'show'  => auth()->user() ? true : false,
                 'route' => 'dashboard',
                 'label' => 'Dashboard',
             ],
             [
-                'show' => Gate::allows('viewAny', User::class),
+                'show'  => Gate::allows('viewAny', User::class),
                 'route' => 'users.index',
                 'label' => 'Users',
             ],
