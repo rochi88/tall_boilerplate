@@ -2,8 +2,8 @@
 
 namespace App\Http\Livewire\Auth;
 
-use Livewire\Component;
 use Illuminate\Support\Facades\Hash;
+use Livewire\Component;
 
 class ConfirmPassword extends Component
 {

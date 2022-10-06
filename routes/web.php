@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Backend\Dashboard;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------

@@ -18,7 +18,7 @@ final class Status extends Enum
     protected static function values(): array
     {
         return [
-            'active' => 1,
+            'active'   => 1,
             'inactive' => 0,
         ];
     }
@@ -26,7 +26,7 @@ final class Status extends Enum
     protected static function labels(): array
     {
         return [
-            'active' => __('Active'),
+            'active'   => __('Active'),
             'inactive' => __('Inactive'),
         ];
     }

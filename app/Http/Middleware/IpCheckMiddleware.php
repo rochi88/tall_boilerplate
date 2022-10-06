@@ -12,20 +12,20 @@ class IpCheckMiddleware
     /**
      * Handle an incoming request.
      *
-     * @param  Request  $request
-     * @param  Closure  $next
+     * @param Request $request
+     * @param Closure $next
+     *
      * @return mixed
      */
     public function handle(Request $request, Closure $next)
     {
         if (auth()->check()) {
-
             $approved = [];
             $ips = Setting::where('key', 'ips')->value('value');
             if ($ips !== null) {
                 $ips = json_decode($ips, true);
 
-                foreach($ips as $row) {
+                foreach ($ips as $row) {
                     $approved[] = $row['ip'];
                 }
 
@@ -38,7 +38,7 @@ class IpCheckMiddleware
                 }
             }
         }
-        
+
         return $next($request);
     }
 }

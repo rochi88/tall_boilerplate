@@ -2,12 +2,12 @@
 
 namespace Database\Seeders;
 
+use App\Models\Team;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Database\Seeder;
-use App\Models\User;
-use App\Models\Team;
 use Laravel\Jetstream\Jetstream;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
@@ -28,12 +28,12 @@ class UserDatabaseSeederTest extends Seeder
 
         $permissions = Permission::all();
 
-        $owner = Role::firstOrCreate(['name' => 'owner','team_id' => null]);
-        $superadmin = Role::firstOrCreate(['name' => 'superadmin','team_id' => 1]);
-        $admin = Role::firstOrCreate(['name' => 'admin','team_id' => 1]);
-        $manager = Role::firstOrCreate(['name' => 'manager','team_id' => 1]);
-        $staff = Role::firstOrCreate(['name' => 'staff','team_id' => 1]);
-        $userrole = Role::firstOrCreate(['name' => 'user','team_id' => 1]);
+        $owner = Role::firstOrCreate(['name' => 'owner', 'team_id' => null]);
+        $superadmin = Role::firstOrCreate(['name' => 'superadmin', 'team_id' => 1]);
+        $admin = Role::firstOrCreate(['name' => 'admin', 'team_id' => 1]);
+        $manager = Role::firstOrCreate(['name' => 'manager', 'team_id' => 1]);
+        $staff = Role::firstOrCreate(['name' => 'staff', 'team_id' => 1]);
+        $userrole = Role::firstOrCreate(['name' => 'user', 'team_id' => 1]);
 
         $owner->givePermissionTo($permissions);
         $superadmin->givePermissionTo($permissions);
@@ -42,26 +42,25 @@ class UserDatabaseSeederTest extends Seeder
         $staff->givePermissionTo($permissions);
         $userrole->givePermissionTo($permissions);
 
-        $staff->revokePermissionTo(['view_settings','add_settings','edit_settings','delete_settings','add_users', 'edit_users', 'delete_users']);
-        $userrole->revokePermissionTo(['view_settings','add_settings','edit_settings','delete_settings','add_users', 'edit_users', 'delete_users']);
+        $staff->revokePermissionTo(['view_settings', 'add_settings', 'edit_settings', 'delete_settings', 'add_users', 'edit_users', 'delete_users']);
+        $userrole->revokePermissionTo(['view_settings', 'add_settings', 'edit_settings', 'delete_settings', 'add_users', 'edit_users', 'delete_users']);
 
         $users = [
-            'owner' => 'owner@domain.com',
+            'owner'      => 'owner@domain.com',
             'superadmin' => 'superadmin@domain.com',
-            'admin' => 'admin@domain.com',
-            'manager' => 'manager@domain.com',
-            'staff' => 'staff@domain.com',
-            'user' => 'user@domain.com'
+            'admin'      => 'admin@domain.com',
+            'manager'    => 'manager@domain.com',
+            'staff'      => 'staff@domain.com',
+            'user'       => 'user@domain.com',
         ];
-
 
         foreach ($users as $name => $email) {
             DB::transaction(function () use ($name, $email) {
                 return tap(User::create([
-                    'name' => $name,
-                    'email' => $email,
-                    'password' => Hash::make('secret'),
-                    'is_office_login_only' => 0
+                    'name'                 => $name,
+                    'email'                => $email,
+                    'password'             => Hash::make('secret'),
+                    'is_office_login_only' => 0,
                 ]), function (User $user) {
                     $this->createTeam($user);
                 });
@@ -91,35 +90,37 @@ class UserDatabaseSeederTest extends Seeder
         setPermissionsTeamId($session_team_id);
     }
 
-
     /**
-    * Create a personal team for the user.
-    *
-    * @param  \App\Models\User  $user
-    * @return void
-    */
+     * Create a personal team for the user.
+     *
+     * @param \App\Models\User $user
+     *
+     * @return void
+     */
     protected function createTeam(User $user)
     {
         $user->ownedTeams()->save(Team::forceCreate([
-            'user_id' => $user->id,
-            'name' => 'Personal',
+            'user_id'       => $user->id,
+            'name'          => 'Personal',
             'personal_team' => true,
         ]));
     }
 
     /**
-    * @param mixed $email
-    * @return Team
-    */
+     * @param mixed $email
+     *
+     * @return Team
+     */
     protected function createBigTeam($email): Team
     {
         $user = Jetstream::findUserByEmailOrFail($email);
         $team = Team::forceCreate([
-            'user_id' => $user->id,
-            'name' => "Big Company",
+            'user_id'       => $user->id,
+            'name'          => 'Big Company',
             'personal_team' => false,
         ]);
         $user->ownedTeams()->save($team);
+
         return $team;
     }
 }

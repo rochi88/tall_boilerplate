@@ -18,9 +18,9 @@ class Menu
     public function build(string $builder): Builder|ContractsMenu
     {
         $class = match ($builder) {
-            'navbar' => Navbar::class,
+            'navbar'  => Navbar::class,
             'sidebar' => Sidebar::class,
-            default => Navbar::class,
+            default   => Navbar::class,
         };
 
         /**
@@ -28,8 +28,8 @@ class Menu
          */
         $builder = new $class();
 
-        ContractException::throwUnless(! $builder instanceof Builder, 'missingContract', $class, Builder::class);
-        ContractException::throwUnless(! $builder instanceof ContractsMenu, 'missingContract', $class, Builder::class);
+        ContractException::throwUnless(!$builder instanceof Builder, 'missingContract', $class, Builder::class);
+        ContractException::throwUnless(!$builder instanceof ContractsMenu, 'missingContract', $class, Builder::class);
 
         return $builder->build();
     }

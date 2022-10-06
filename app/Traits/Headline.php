@@ -24,9 +24,9 @@ trait Headline
     /**
      * @param string $name
      *
-     * @return int|string
-     *
      * @throws UnknownEnumProperty
+     *
+     * @return int|string
      */
     public function __get(string $name)
     {

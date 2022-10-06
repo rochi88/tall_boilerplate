@@ -8,7 +8,7 @@ return [
     'dismissible' => true,
 
     /**
-     * Defines which css framework will be used. Allowed values are "tailwind" and "bootstrap"
+     * Defines which css framework will be used. Allowed values are "tailwind" and "bootstrap".
      */
     'framework' => (string) env('FLASH_FRAMEWORK', 'tailwind'),
 
@@ -23,22 +23,22 @@ return [
     'classes' => [
         'tailwind' => [
             'success' => 'bg-green-500',
-            'error' => 'bg-red-600',
+            'error'   => 'bg-red-600',
             'warning' => 'bg-yellow-400',
-            'stored' => 'bg-green-500',
+            'stored'  => 'bg-green-500',
             'updated' => 'bg-green-500',
             'deleted' => 'bg-green-500',
-            'queued' => 'bg-green-500',
+            'queued'  => 'bg-green-500',
         ],
 
         'bootstrap' => [
             'success' => 'alert-success',
-            'error' => 'alert-danger',
+            'error'   => 'alert-danger',
             'warning' => 'alert-warning',
-            'stored' => 'alert-success',
+            'stored'  => 'alert-success',
             'updated' => 'alert-success',
             'deleted' => 'alert-success',
-            'queued' => 'alert-success',
+            'queued'  => 'alert-success',
         ],
     ],
 
@@ -103,7 +103,7 @@ return [
          */
         'classes' => [
             /**
-             * Any tailwindcss class
+             * Any tailwindcss class.
              */
             'tailwind' => 'bg-red-600 text-white text-sm',
 
@@ -122,5 +122,5 @@ return [
          * Extra class applied to alert validation
          */
         'class' => '',
-    ]
+    ],
 ];
