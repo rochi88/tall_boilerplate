@@ -1,1 +1,0 @@
-<x-button href="{{ route($route) }}" :outline="!request()->routeIs($route)" indigo {{ $attributes }} class="w-full" />
