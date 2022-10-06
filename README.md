@@ -1,5 +1,7 @@
 ## TALL Stack Boilerplate
 
+![StyleCI](https://github.styleci.io/repos/522887896/shield?branch=main)
+
 Basic function of a system is here for TailwindCSS, AlpineJs, Livewire and Laravel.
 
 ## Install application
@@ -33,23 +35,23 @@ Ports used in the project:
 | **php** | 9000 |
 | **redis** | 6379 |
 
-## Features
+## Features (WIP)
 
--   Basic Pages: Landing, About, Contact Us
--   Login and Registration
--   Forgot Password, Email Confirmation, Password Reset
--   Error Pages: 404, 503, 405, 500
--   Basic User functionalities
--   User Roles and Permissions
--   Sending Email
--   Dashboard
--   Content Management System
--   Messages and Inbox
--   Notifications
--   Laravel X-Components
--   Social Media Login
--   Import and Export (Excel)
--   Generate Printable Files (PDF)
+ - [] Basic Pages: Landing, About, Contact Us
+ - [x] Login and Registration
+ - [x] Forgot Password, Email Confirmation, Password Reset
+ - [] Error Pages: 404, 503, 405, 500
+ - [x] Basic User functionalities
+ - [x] User Roles and Permissions
+ - [] Sending Email
+ - [x] Dashboard
+ - [] Content Management System
+ - [] Messages and Inbox
+ - [] Notifications
+ - [] Laravel X-Components
+ - [] Social Media Login
+ - [] Import and Export (Excel)
+ - [] Generate Printable Files (PDF)
 
 ## Versions
 
