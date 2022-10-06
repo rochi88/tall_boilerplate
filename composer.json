@@ -19,7 +19,7 @@
         "spatie/laravel-enum": "^3.0",
         "spatie/laravel-medialibrary": "^10.4",
         "spatie/laravel-permission": "^5.5",
-        "wireui/wireui": "^1.13"
+        "wireui/wireui": "^1.16"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.7",
