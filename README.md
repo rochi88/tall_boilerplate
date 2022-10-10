@@ -22,7 +22,7 @@ npm i && npm run dev
 Now visit `` http://localhost:8000 or http://127.0.0.1:8000 ``
 
 ## Admin Credentials
-> Email: user@domain.com || Password: password
+> Email: user@domain.com || Password: secret
 
 ## Docker Ports
 
