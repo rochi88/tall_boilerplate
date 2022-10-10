@@ -217,7 +217,7 @@ return [
         'vscode_remote' => [
             'handler'        => 'vscode://vscode-remote/',
             'line_separator' => ':',
-            'local_path'     => 'wsl+' . env('DS_PREFERRED_WSL_DISTRO', 'Ubuntu20.04LTS'),
+            'local_path'     => 'wsl+'.env('DS_PREFERRED_WSL_DISTRO', 'Ubuntu20.04LTS'),
             'remote_path'    => env('DS_REMOTE_PATH', null),
             'work_dir'       => env('DS_WORKDIR', '/var/www/html'),
         ],
