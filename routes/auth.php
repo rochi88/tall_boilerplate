@@ -1,16 +1,15 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use Laravel\Fortify\Http\Controllers\TwoFactorAuthenticatedSessionController;
+use App\Http\Controllers\Auth\EmailVerificationController;
+use App\Http\Controllers\Auth\LogoutController;
+use App\Http\Livewire\Auth\ConfirmPassword;
+use App\Http\Livewire\Auth\ForgotPassword;
 use App\Http\Livewire\Auth\Login;
 use App\Http\Livewire\Auth\Register;
-use App\Http\Livewire\Auth\VerifyEmail;
 use App\Http\Livewire\Auth\ResetPassword;
-use App\Http\Livewire\Auth\ForgotPassword;
-use App\Http\Livewire\Auth\ConfirmPassword;
-use App\Http\Controllers\Auth\LogoutController;
-use App\Http\Controllers\Auth\EmailVerificationController;
-
+use App\Http\Livewire\Auth\VerifyEmail;
+use Illuminate\Support\Facades\Route;
+use Laravel\Fortify\Http\Controllers\TwoFactorAuthenticatedSessionController;
 
 Route::group(['middleware' => ['guest']], function () {
     Route::get('/login', Login::class)->name('login');
@@ -27,10 +26,10 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/email/verify/{id}/{hash}', EmailVerificationController::class)->name('verification.verify');
 });
 
-Route::get('/.well-known/change-password', function() {
+Route::get('/.well-known/change-password', function () {
     if (auth()->check()) {
         return redirect()->route('dashboard.account.security');
-    } 
+    }
 
     return redirect()->route('password.email');
 });
