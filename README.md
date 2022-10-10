@@ -59,3 +59,10 @@ Ports used in the project:
 -   Livewire - 2.0
 -   Laravel - 9.0
 -   AlpineJs - 3.0
+
+## Useful Commands
+
+### PHP-CS-FIXER
+```
+composer format app
+```
