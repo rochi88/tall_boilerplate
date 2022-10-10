@@ -17,6 +17,18 @@ return [
 
     'name' => env('APP_NAME', 'Tall_boilerplate'),
 
+    'meta' => [
+        
+        'name' => 'Tall_boilerplate',
+
+        'tagline' => 'Simple goal accountability',
+
+        'title' => 'Tall_boilerplate - Tall boilerplate built with Laravel Framework.',
+
+        'description' => 'The tall boilerplate built with Laravel Framework.',
+
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | Application Environment

@@ -5,11 +5,11 @@
     "keywords": ["framework", "laravel", "tall", "boilerplate"],
     "license": "MIT",
     "require": {
-        "php": "^8.0.2",
+        "php": "^8.0",
         "danharrin/livewire-rate-limiting": "^1.0",
         "guzzlehttp/guzzle": "^7.2",
         "josegus/laravel-flash": "^1.3",
-        "laravel/framework": "^9.34",
+        "laravel/framework": "^9.0",
         "laravel/jetstream": "^2.12",
         "laravel/sanctum": "^3.0",
         "laravel/tinker": "^2.7",
@@ -82,11 +82,7 @@
         ],
         "test": "@php artisan test --parallel",
         "test-coverage": "vendor/bin/phpunit --coverage-html coverage",
-        "format": "vendor/bin/php-cs-fixer fix --allow-risky=yes",
-        "ds:check": "@php artisan ds:check",
-        "verify": [
-            "@ds:check"
-        ]
+        "format": "vendor/bin/php-cs-fixer fix --allow-risky=yes"
     },
     "extra": {
         "laravel": {
