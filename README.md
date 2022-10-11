@@ -48,7 +48,7 @@ Ports used in the project:
  - [ ] Content Management System
  - [ ] Messages and Inbox
  - [ ] Notifications
- - [ ] Laravel X-Components
+ - [x] Laravel X-Components
  - [ ] Social Media Login
  - [ ] Import and Export (Excel)
  - [ ] Generate Printable Files (PDF)

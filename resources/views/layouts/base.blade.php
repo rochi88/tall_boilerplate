@@ -39,7 +39,6 @@
 </head>
 
 <body class="text-gray-900 font-sans selection:bg-purple-100 antialiased @stack('body:classes')">
-    <x-flash::message />
     <div class="font-sans text-gray-900 antialiased">
         {{ $slot }}
     </div>

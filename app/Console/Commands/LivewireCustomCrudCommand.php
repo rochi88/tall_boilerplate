@@ -28,7 +28,9 @@ class LivewireCustomCrudCommand extends Command
      * Our custom class properties here!
      */
     protected $nameOfTheClass;
+
     protected $nameOfTheModelClass;
+
     protected $file;
 
     /**
@@ -70,12 +72,12 @@ class LivewireCustomCrudCommand extends Command
         $this->nameOfTheModelClass = $this->argument('nameOfTheModelClass');
 
         // If you didn't input the name of the class
-        if (!$this->nameOfTheClass) {
+        if (! $this->nameOfTheClass) {
             $this->nameOfTheClass = $this->ask('Enter class name');
         }
 
         // If you didn't input the name of the class
-        if (!$this->nameOfTheModelClass) {
+        if (! $this->nameOfTheModelClass) {
             $this->nameOfTheModelClass = $this->ask('Enter model name');
         }
 

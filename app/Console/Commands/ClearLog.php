@@ -7,6 +7,7 @@ use Illuminate\Console\Command;
 class ClearLog extends Command
 {
     protected $signature = 'log:clear';
+
     protected $description = 'empty error log';
 
     public function handle()

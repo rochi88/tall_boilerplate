@@ -1,5 +1,3 @@
-@push('pagetitle', 'Dashboard')
-
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -14,8 +12,4 @@
             </div>
         </div>
     </div>
-    {{-- <livewire:power-grid-demo-table/> --}}
-    {{-- <livewire:users-table/>
-    <livewire:roles-table/> --}}
-    {{-- <livewire:show-jobs/> --}}
 </x-app-layout>
