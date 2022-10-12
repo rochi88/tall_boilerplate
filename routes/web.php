@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Livewire\Backend\Dashboard;
+use App\Http\Livewire\Addresslist;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,4 +17,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'welcome')->name('welcome');
 
-Route::get('/dashboard', Dashboard::class)->middleware(['auth', 'activeUser'])->name('dashboard');
+Route::middleware(['auth', 'activeUser'])->group(function () {
+    Route::get('/dashboard', Dashboard::class)->name('dashboard');
+    Route::get('/addresslist', Addresslist::class)->name('addresslist');
+
+    Route::get('logout', function () {
+        auth()->logout();
+        return redirect()->route('login');
+    })->name('logout');
+});

@@ -10,8 +10,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             AppDatabaseSeeder::class,
-            // UserDatabaseSeeder::class,
-            UserDatabaseSeederTest::class,
+            UserDatabaseSeeder::class,
         ]);
     }
 }

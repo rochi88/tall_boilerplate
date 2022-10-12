@@ -30,6 +30,7 @@ return new class extends Migration {
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password')->nullable();
             $table->unsignedInteger('sort')->default(1);
+            $table->boolean('admin')->default(false);
             $table->rememberToken();
             $table->foreignId('current_team_id')->nullable();
             $table->string('profile_photo_path', 2048)->nullable();
