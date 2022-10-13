@@ -1,3 +1,5 @@
+@push('pagetitle', 'Addresses')
+
 <div class="p-6">
     <div class="flex items-center justify-end px-4 py-3 text-right sm:px-6">
         <x-jet-button wire:click="createShowModal">

@@ -19,12 +19,6 @@
     <!-- Fonts -->
     <link rel="stylesheet" href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap">
 
-    <!-- styles -->
-    <style>
-        [x-cloak] {
-            display: none !important;
-        }
-    </style>
     <script>
         if (localStorage._x_darkMode === 'true' || (!('_x_darkMode' in localStorage) && window.matchMedia(
                 '(prefers-color-scheme: dark)').matches)) {
@@ -33,6 +27,8 @@
             document.documentElement.classList.remove("dark")
         }
     </script>
+
+    <!-- styles -->
     @livewireStyles
     @wireUiScripts
     @vite(['resources/css/app.css', 'resources/js/app.js'])
