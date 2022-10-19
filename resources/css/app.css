@@ -17,8 +17,3 @@
 html {
     height: 100%;
 }
-
-body {
-    font-family: Roboto, sans-serif;
-    @apply h-full antialiased text-zinc-700 dark: text-zinc-200 bg-zinc-50 dark:bg-zinc-900;
-}

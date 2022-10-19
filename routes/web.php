@@ -19,7 +19,6 @@ Route::view('/', 'welcome')->name('welcome');
 
 Route::middleware(['auth', 'activeUser'])->group(function () {
     Route::get('/dashboard', Dashboard::class)->name('dashboard');
-    Route::get('/addresslist', Addresslist::class)->name('addresslist');
 
     Route::get('logout', function () {
         auth()->logout();
