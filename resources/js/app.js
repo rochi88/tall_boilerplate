@@ -10,6 +10,6 @@ Alpine.start();
 
 // Adding turbo
 import 'livewire-turbolinks';
-import '@hotwired/turbo';
-// import * as Turbo from "@hotwired/turbo";
+// import '@hotwired/turbo';
+import * as Turbo from "@hotwired/turbo";
 
