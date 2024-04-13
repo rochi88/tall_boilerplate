@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace App\Exceptions;
 
 use App\Concerns\InteractsWithExceptions;
@@ -11,6 +13,6 @@ class ContractException extends Exception
 
     public static function missingContract(string $class, string $contract)
     {
-        return new self("$class did not implements $contract");
+        return new self("{$class} did not implements {$contract}");
     }
 }

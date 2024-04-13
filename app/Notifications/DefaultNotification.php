@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
@@ -36,7 +38,7 @@ class DefaultNotification extends Notification
      *
      * @return void
      */
-    public function __construct(string $subject, string $message, string $url = null)
+    public function __construct(string $subject, string $message, ?string $url = null)
     {
         $this->subject = $subject;
         $this->message = $message;
@@ -58,7 +60,7 @@ class DefaultNotification extends Notification
      * Get the mail representation of the notification.
      *
      * @param  mixed  $notifiable
-     * @return \Illuminate\Notifications\Messages\MailMessage
+     * @return MailMessage
      */
     public function toMail($notifiable)
     {
@@ -96,8 +98,6 @@ class DefaultNotification extends Notification
 
     /**
      * Get the URL of the notification.
-     *
-     * @return string
      */
     public function getUrl(): ?string
     {
@@ -112,7 +112,7 @@ class DefaultNotification extends Notification
         return [
             'subject' => $this->getSubject(),
             'message' => $this->getMessage(),
-            'url' => $this->getUrl(),
+            'url'     => $this->getUrl(),
         ];
     }
 }

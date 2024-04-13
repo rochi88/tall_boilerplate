@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Tests\Feature;
 
 use App\Models\User;
@@ -17,7 +19,7 @@ class InviteTeamMemberTest extends TestCase
 
     public function test_team_members_can_be_invited_to_team()
     {
-        if (! Features::sendsTeamInvitations()) {
+        if (!Features::sendsTeamInvitations()) {
             return $this->markTestSkipped('Team invitations not enabled.');
         }
 
@@ -26,10 +28,10 @@ class InviteTeamMemberTest extends TestCase
         $this->actingAs($user = User::factory()->withPersonalTeam()->create());
 
         $component = Livewire::test(TeamMemberManager::class, ['team' => $user->currentTeam])
-                        ->set('addTeamMemberForm', [
-                            'email' => 'test@example.com',
-                            'role' => 'admin',
-                        ])->call('addTeamMember');
+            ->set('addTeamMemberForm', [
+                'email' => 'test@example.com',
+                'role'  => 'admin',
+            ])->call('addTeamMember');
 
         Mail::assertSent(TeamInvitation::class);
 
@@ -38,7 +40,7 @@ class InviteTeamMemberTest extends TestCase
 
     public function test_team_member_invitations_can_be_cancelled()
     {
-        if (! Features::sendsTeamInvitations()) {
+        if (!Features::sendsTeamInvitations()) {
             return $this->markTestSkipped('Team invitations not enabled.');
         }
 
@@ -48,10 +50,10 @@ class InviteTeamMemberTest extends TestCase
 
         // Add the team member...
         $component = Livewire::test(TeamMemberManager::class, ['team' => $user->currentTeam])
-                        ->set('addTeamMemberForm', [
-                            'email' => 'test@example.com',
-                            'role' => 'admin',
-                        ])->call('addTeamMember');
+            ->set('addTeamMemberForm', [
+                'email' => 'test@example.com',
+                'role'  => 'admin',
+            ])->call('addTeamMember');
 
         $invitationId = $user->currentTeam->fresh()->teamInvitations->first()->id;
 

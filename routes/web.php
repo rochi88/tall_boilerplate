@@ -1,7 +1,8 @@
 <?php
 
+declare(strict_types = 1);
+
 use App\Http\Livewire\Backend\Dashboard;
-use App\Http\Livewire\Addresslist;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,6 +23,7 @@ Route::middleware(['auth', 'activeUser'])->group(function () {
 
     Route::get('logout', function () {
         auth()->logout();
+
         return redirect()->route('login');
     })->name('logout');
 });

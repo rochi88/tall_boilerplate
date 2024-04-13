@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\Http\Middleware;
 
@@ -13,7 +13,6 @@ class ActiveUser
     {
         //if user is not active log the user out
         if (!auth()->user()->is_active) {
-            flash()->error('Your account has been deactivated. You cannot login.');
             auth()->logout();
 
             return redirect(route('login'));

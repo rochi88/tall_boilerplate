@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace App\Traits;
 
 // 1. Potentially there's only some values/labels overwritten. Need to tackle that as well.
@@ -15,8 +17,8 @@ trait Options
         return to_options(
             array_combine(
                 $values,
-                $labels
-            )
+                $labels,
+            ),
         );
     }
 }

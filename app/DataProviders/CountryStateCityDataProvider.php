@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace App\DataProviders;
 
 abstract class CountryStateCityDataProvider
@@ -252,7 +254,7 @@ abstract class CountryStateCityDataProvider
             ['id' => '243', 'name' => 'yemen'],
             ['id' => '244', 'name' => 'yugoslavia'],
             ['id' => '245', 'name' => 'zambia'],
-            ['id' => '246', 'name' => 'zimbabwe']
+            ['id' => '246', 'name' => 'zimbabwe'],
         ];
     }
 
@@ -4378,7 +4380,7 @@ abstract class CountryStateCityDataProvider
             ['id' => '4117', 'country_id' => '246', 'name' => 'masvingo'],
             ['id' => '4118', 'country_id' => '246', 'name' => 'matabeleland north'],
             ['id' => '4119', 'country_id' => '246', 'name' => 'matabeleland south'],
-            ['id' => '4120', 'country_id' => '246', 'name' => 'midlands']
+            ['id' => '4120', 'country_id' => '246', 'name' => 'midlands'],
         ];
     }
 
@@ -52698,7 +52700,7 @@ abstract class CountryStateCityDataProvider
             ['id' => '48311', 'state_id' => '3976', 'name' => 'weston'],
             ['id' => '48312', 'state_id' => '3976', 'name' => 'lewisburg'],
             ['id' => '48313', 'state_id' => '3976', 'name' => 'ravenswood'],
-            ['id' => '48314', 'state_id' => '3976', 'name' => 'summersville']
+            ['id' => '48314', 'state_id' => '3976', 'name' => 'summersville'],
         ];
     }
 }

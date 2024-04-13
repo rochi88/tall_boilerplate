@@ -1,16 +1,15 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Database\Seeders;
 
-use App\Models\Team;
-use App\Models\User;
+use App\Models\{Team, User};
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\{DB, Hash};
 use Laravel\Jetstream\Jetstream;
-use Spatie\Permission\Models\Permission;
-use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\{Permission, Role};
 
 class UserDatabaseSeeder extends Seeder
 {
@@ -61,7 +60,7 @@ class UserDatabaseSeeder extends Seeder
                     'email'                => $email,
                     'password'             => Hash::make('secret'),
                     'is_office_login_only' => 0,
-                    'admin'                => true
+                    'admin'                => true,
                 ]) : User::create([
                     'name'                 => $name,
                     'email'                => $email,
@@ -81,7 +80,7 @@ class UserDatabaseSeeder extends Seeder
             if (!($name == 'owner' || $name == 'superadmin' || $name == 'admin')) {
                 $team->users()->attach(
                     Jetstream::findUserByEmailOrFail($email),
-                    ['role' => $name]
+                    ['role' => $name],
                 );
             }
         }
@@ -99,7 +98,6 @@ class UserDatabaseSeeder extends Seeder
     /**
      * Create a personal team for the user.
      *
-     * @param \App\Models\User $user
      *
      * @return void
      */
@@ -113,9 +111,7 @@ class UserDatabaseSeeder extends Seeder
     }
 
     /**
-     * @param mixed $email
-     *
-     * @return Team
+     * @param  mixed  $email
      */
     protected function createBigTeam($email): Team
     {

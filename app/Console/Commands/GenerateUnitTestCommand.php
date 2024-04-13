@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
@@ -30,7 +32,7 @@ class GenerateUnitTestCommand extends Command
     {
         $this->buffer = new BufferedOutput();
         $this->callBuffer('route:list', [
-            '--json' => true,
+            '--json'          => true,
             '--except-vendor' => true,
         ]);
 
@@ -40,19 +42,19 @@ class GenerateUnitTestCommand extends Command
             return $this->components->error("Your application doesn't have any routes.");
         }
 
-        $this->info(count($routes).' routes found');
+        $this->info(count($routes) . ' routes found');
 
         foreach ($routes as $route) {
             if (empty($route['name'])) {
-                $this->warn('Empty route name. Skip generate unit test for '.'('.$route['method'].') '.$route['uri']);
+                $this->warn('Empty route name. Skip generate unit test for ' . '(' . $route['method'] . ') ' . $route['uri']);
 
                 continue;
             }
-            $this->line('Generating unit test for '.'('.$route['method'].') '.$route['uri']);
-            $class = str($route['name'])->replace('.', ' ')->headline()->replace(' ', '').'Test';
+            $this->line('Generating unit test for ' . '(' . $route['method'] . ') ' . $route['uri']);
+            $class = str($route['name'])->replace('.', ' ')->headline()->replace(' ', '') . 'Test';
 
             $this->call('pest:test', [
-                'name' => $class,
+                'name'    => $class,
                 '--force' => true,
             ]);
         }
@@ -64,7 +66,6 @@ class GenerateUnitTestCommand extends Command
      * Call another console command.
      *
      * @param  \Symfony\Component\Console\Command\Command|string  $command
-     * @param  array  $arguments
      * @return int
      */
     public function callBuffer($command, array $arguments = [])

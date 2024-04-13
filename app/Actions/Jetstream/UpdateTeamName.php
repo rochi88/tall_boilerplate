@@ -1,9 +1,10 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace App\Actions\Jetstream;
 
-use Illuminate\Support\Facades\Gate;
-use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\{Gate, Validator};
 use Laravel\Jetstream\Contracts\UpdatesTeamNames;
 
 class UpdateTeamName implements UpdatesTeamNames
@@ -13,7 +14,6 @@ class UpdateTeamName implements UpdatesTeamNames
      *
      * @param  mixed  $user
      * @param  mixed  $team
-     * @param  array  $input
      * @return void
      */
     public function update($user, $team, array $input)

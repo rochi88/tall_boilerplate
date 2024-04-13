@@ -1,13 +1,14 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Database\Seeders;
 
 use App\Actions\Fortify\CreateNewUser;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Seeder;
-use Spatie\Permission\Models\Permission;
-use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\{Permission, Role};
 
 class UserDatabaseSeederTest extends Seeder
 {
@@ -36,13 +37,13 @@ class UserDatabaseSeederTest extends Seeder
         $userrole->revokePermissionTo(['add_users', 'edit_users', 'delete_users']);
 
         $user = (new CreateNewUser())->create([
-            'name'                 => 'Lara_lab',
-            'email'                => 'user@domain.com',
-            'password'             => 'password',
-            'password_confirmation'=> 'password',
-            'email_verified_at'    => session('teamInvitation') ? now() : null,
-            'is_active'            => 1,
-            'is_office_login_only' => 0,
+            'name'                  => 'Lara_lab',
+            'email'                 => 'user@domain.com',
+            'password'              => 'password',
+            'password_confirmation' => 'password',
+            'email_verified_at'     => session('teamInvitation') ? now() : null,
+            'is_active'             => 1,
+            'is_office_login_only'  => 0,
         ]);
 
         // get session team_id for restore it later

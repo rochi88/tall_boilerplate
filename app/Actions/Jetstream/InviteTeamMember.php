@@ -1,10 +1,10 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace App\Actions\Jetstream;
 
-use Illuminate\Support\Facades\Gate;
-use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\{Gate, Mail, Validator};
 use Illuminate\Validation\Rule;
 use Laravel\Jetstream\Contracts\InvitesTeamMembers;
 use Laravel\Jetstream\Events\InvitingTeamMember;
@@ -19,11 +19,9 @@ class InviteTeamMember implements InvitesTeamMembers
      *
      * @param  mixed  $user
      * @param  mixed  $team
-     * @param  string  $email
-     * @param  string|null  $role
      * @return void
      */
-    public function invite($user, $team, string $email, string $role = null)
+    public function invite($user, $team, string $email, ?string $role = null)
     {
         Gate::forUser($user)->authorize('addTeamMember', $team);
 
@@ -33,7 +31,7 @@ class InviteTeamMember implements InvitesTeamMembers
 
         $invitation = $team->teamInvitations()->create([
             'email' => $email,
-            'role' => $role,
+            'role'  => $role,
         ]);
 
         Mail::to($email)->send(new TeamInvitation($invitation));
@@ -43,19 +41,17 @@ class InviteTeamMember implements InvitesTeamMembers
      * Validate the invite member operation.
      *
      * @param  mixed  $team
-     * @param  string  $email
-     * @param  string|null  $role
      * @return void
      */
     protected function validate($team, string $email, ?string $role)
     {
         Validator::make([
             'email' => $email,
-            'role' => $role,
+            'role'  => $role,
         ], $this->rules($team), [
             'email.unique' => __('This user has already been invited to the team.'),
         ])->after(
-            $this->ensureUserIsNotAlreadyOnTeam($team, $email)
+            $this->ensureUserIsNotAlreadyOnTeam($team, $email),
         )->validateWithBag('addTeamMember');
     }
 
@@ -81,7 +77,6 @@ class InviteTeamMember implements InvitesTeamMembers
      * Ensure that the user is not already on the team.
      *
      * @param  mixed  $team
-     * @param  string  $email
      * @return \Closure
      */
     protected function ensureUserIsNotAlreadyOnTeam($team, string $email)
@@ -90,7 +85,7 @@ class InviteTeamMember implements InvitesTeamMembers
             $validator->errors()->addIf(
                 $team->hasUserWithEmail($email),
                 'email',
-                __('This user already belongs to the team.')
+                __('This user already belongs to the team.'),
             );
         };
     }

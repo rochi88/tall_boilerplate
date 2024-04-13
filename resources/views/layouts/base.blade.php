@@ -40,7 +40,6 @@
         {{ $slot }}
     </div>
     @livewireScripts
-    @powerGridScripts
 </body>
 
 </html>

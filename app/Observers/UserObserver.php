@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace App\Observers;
 
 use App\Models\User;
@@ -10,7 +12,6 @@ class UserObserver
     /**
      * Handle the user "created" event.
      *
-     * @param \App\Models\User $user
      *
      * @return void
      */
@@ -24,7 +25,6 @@ class UserObserver
     /**
      * Handle the user "updated" event.
      *
-     * @param \App\Models\User $user
      *
      * @return void
      */
@@ -38,7 +38,6 @@ class UserObserver
     /**
      * Handle the user "deleted" event.
      *
-     * @param \App\Models\User $user
      *
      * @return void
      */
@@ -52,7 +51,6 @@ class UserObserver
     /**
      * Handle the user "restored" event.
      *
-     * @param \App\Models\User $user
      *
      * @return void
      */
@@ -64,7 +62,6 @@ class UserObserver
     /**
      * Handle the user "force deleted" event.
      *
-     * @param \App\Models\User $user
      *
      * @return void
      */

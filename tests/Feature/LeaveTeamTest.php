@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Tests\Feature;
 
 use App\Models\User;
@@ -17,13 +19,13 @@ class LeaveTeamTest extends TestCase
         $user = User::factory()->withPersonalTeam()->create();
 
         $user->currentTeam->users()->attach(
-            $otherUser = User::factory()->create(), ['role' => 'admin']
+            $otherUser = User::factory()->create(), ['role' => 'admin'],
         );
 
         $this->actingAs($otherUser);
 
         $component = Livewire::test(TeamMemberManager::class, ['team' => $user->currentTeam])
-                        ->call('leaveTeam');
+            ->call('leaveTeam');
 
         $this->assertCount(0, $user->currentTeam->fresh()->users);
     }
@@ -33,8 +35,8 @@ class LeaveTeamTest extends TestCase
         $this->actingAs($user = User::factory()->withPersonalTeam()->create());
 
         $component = Livewire::test(TeamMemberManager::class, ['team' => $user->currentTeam])
-                        ->call('leaveTeam')
-                        ->assertHasErrors(['team']);
+            ->call('leaveTeam')
+            ->assertHasErrors(['team']);
 
         $this->assertNotNull($user->currentTeam->fresh());
     }

@@ -1,33 +1,34 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace App\Enums;
 
-use App\Traits\Headline;
-use App\Traits\Options;
-use Spatie\Enum\Laravel\Enum;
+use Illuminate\Support\Str;
 
-/**
- * @method static self active()
- * @method static self inactive()
- */
-final class Status extends Enum
+enum Status: int
 {
-    use Headline;
-    use Options;
+    case INACTIVE = 0;
+    case ACTIVE = 1;
 
-    protected static function values(): array
+    public function getName(): string
     {
-        return [
-            'active'   => 1,
-            'inactive' => 0,
-        ];
+        return __(Str::studly($this->name));
     }
 
-    protected static function labels(): array
+    public function getValue()
     {
-        return [
-            'active'   => __('Active'),
-            'inactive' => __('Inactive'),
-        ];
+        return $this->value;
+    }
+
+    public static function getLabel($value): ?string
+    {
+        foreach (self::cases() as $case) {
+            if ($case->getValue() === $value) {
+                return $case->getName();
+            }
+        }
+
+        return null;
     }
 }

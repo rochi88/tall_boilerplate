@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Tests\Feature;
 
 use App\Models\User;
@@ -17,8 +19,8 @@ class BrowserSessionsTest extends TestCase
         $this->actingAs($user = User::factory()->create());
 
         Livewire::test(LogoutOtherBrowserSessionsForm::class)
-                ->set('password', 'password')
-                ->call('logoutOtherBrowserSessions')
-                ->assertSuccessful();
+            ->set('password', 'password')
+            ->call('logoutOtherBrowserSessions')
+            ->assertSuccessful();
     }
 }

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace App\Observers;
 
 use App\Models\Setting;
@@ -10,8 +12,7 @@ class SettingObserver
     /**
      * Handle the Setting "created" event.
      *
-     * @param \Modules\Setting\Entities\Setting $setting
-     *
+     * @param  \Modules\Setting\Entities\Setting  $setting
      * @return void
      */
     public function created(Setting $setting)
@@ -24,8 +25,7 @@ class SettingObserver
     /**
      * Handle the Setting "updated" event.
      *
-     * @param \Modules\Setting\Entities\Setting $setting
-     *
+     * @param  \Modules\Setting\Entities\Setting  $setting
      * @return void
      */
     public function updated(Setting $setting)
@@ -38,8 +38,7 @@ class SettingObserver
     /**
      * Handle the Setting "deleted" event.
      *
-     * @param \Modules\Setting\Entities\Setting $setting
-     *
+     * @param  \Modules\Setting\Entities\Setting  $setting
      * @return void
      */
     public function deleted(Setting $setting)
@@ -52,8 +51,7 @@ class SettingObserver
     /**
      * Handle the Setting "restored" event.
      *
-     * @param \Modules\Setting\Entities\Setting $setting
-     *
+     * @param  \Modules\Setting\Entities\Setting  $setting
      * @return void
      */
     public function restored(Setting $setting)
@@ -63,8 +61,7 @@ class SettingObserver
     /**
      * Handle the Setting "force deleted" event.
      *
-     * @param \Modules\Setting\Entities\Setting $setting
-     *
+     * @param  \Modules\Setting\Entities\Setting  $setting
      * @return void
      */
     public function forceDeleted(Setting $setting)

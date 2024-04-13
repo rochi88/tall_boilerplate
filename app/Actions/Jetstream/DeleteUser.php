@@ -1,24 +1,24 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace App\Actions\Jetstream;
 
 use Illuminate\Support\Facades\DB;
-use Laravel\Jetstream\Contracts\DeletesTeams;
-use Laravel\Jetstream\Contracts\DeletesUsers;
+use Laravel\Jetstream\Contracts\{DeletesTeams, DeletesUsers};
 
 class DeleteUser implements DeletesUsers
 {
     /**
      * The team deleter implementation.
      *
-     * @var \Laravel\Jetstream\Contracts\DeletesTeams
+     * @var DeletesTeams
      */
     protected $deletesTeams;
 
     /**
      * Create a new action instance.
      *
-     * @param  \Laravel\Jetstream\Contracts\DeletesTeams  $deletesTeams
      * @return void
      */
     public function __construct(DeletesTeams $deletesTeams)

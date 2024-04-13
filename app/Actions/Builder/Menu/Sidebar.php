@@ -1,13 +1,13 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace App\Actions\Builder\Menu;
 
-use App\Contracts\Builder;
-use App\Contracts\Menu;
+use App\Contracts\{Builder, Menu};
 use App\Models\User;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Gate;
-use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\{Gate, Route};
 
 class Sidebar implements Builder, Menu
 {
@@ -22,31 +22,31 @@ class Sidebar implements Builder, Menu
     {
         $this->menus = collect([
             [
-                'show' => auth()->user() ? false : true,
+                'show'  => auth()->user() ? false : true,
                 'route' => 'welcome',
                 'label' => 'Welcome',
             ],
             [
-                'show' => auth()->user() ? false : Route::has('register'),
+                'show'  => auth()->user() ? false : Route::has('register'),
                 'route' => 'register',
                 'label' => 'Register',
             ],
             [
-                'show' => auth()->user() ? false : true,
+                'show'  => auth()->user() ? false : true,
                 'route' => 'login',
                 'label' => 'Login',
             ],
             [
-                'show' => auth()->user() ? true : false,
+                'show'  => auth()->user() ? true : false,
                 'route' => 'dashboard',
                 'label' => 'Dashboard',
-                'icon' => 'o-home',
+                'icon'  => 'o-home',
             ],
             [
-                'show' => Gate::allows('viewAny', User::class),
+                'show'  => Gate::allows('viewAny', User::class),
                 'route' => 'users.index',
                 'label' => 'Users',
-                'icon' => 'o-users',
+                'icon'  => 'o-users',
             ],
         ])->reject(fn ($menu) => $menu['show'] == false);
 

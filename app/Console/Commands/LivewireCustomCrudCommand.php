@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
@@ -72,12 +74,12 @@ class LivewireCustomCrudCommand extends Command
         $this->nameOfTheModelClass = $this->argument('nameOfTheModelClass');
 
         // If you didn't input the name of the class
-        if (! $this->nameOfTheClass) {
+        if (!$this->nameOfTheClass) {
             $this->nameOfTheClass = $this->ask('Enter class name');
         }
 
         // If you didn't input the name of the class
-        if (! $this->nameOfTheModelClass) {
+        if (!$this->nameOfTheModelClass) {
             $this->nameOfTheModelClass = $this->ask('Enter model name');
         }
 
@@ -95,10 +97,10 @@ class LivewireCustomCrudCommand extends Command
     {
         // Set the origin and destination for the livewire class file
         $fileOrigin = base_path('/stubs/livewire-crud/custom.livewire.crud.stub');
-        $fileDestination = base_path('/app/Http/Livewire/'.$this->nameOfTheClass.'.php');
+        $fileDestination = base_path('/app/Http/Livewire/' . $this->nameOfTheClass . '.php');
 
         if ($this->file->exists($fileDestination)) {
-            $this->info('This class file already exists: '.$this->nameOfTheClass.'.php');
+            $this->info('This class file already exists: ' . $this->nameOfTheClass . '.php');
             $this->info('Aborting class file creation.');
 
             return false;
@@ -120,12 +122,12 @@ class LivewireCustomCrudCommand extends Command
                 $this->nameOfTheModelClass, // Name of the model class
                 Str::kebab($this->nameOfTheClass), // From "FooBar" to "foo-bar"
             ],
-            $fileOriginalString
+            $fileOriginalString,
         );
 
         // Put the content into the destination directory
         $this->file->put($fileDestination, $replaceFileOriginalString);
-        $this->info('Livewire class file created: '.$fileDestination);
+        $this->info('Livewire class file created: ' . $fileDestination);
     }
 
     /**
@@ -137,10 +139,10 @@ class LivewireCustomCrudCommand extends Command
     {
         // Set the origin and destination for the livewire class file
         $fileOrigin = base_path('/stubs/livewire-crud/custom.livewire.crud.view.stub');
-        $fileDestination = base_path('/resources/views/livewire/'.Str::kebab($this->nameOfTheClass).'.blade.php');
+        $fileDestination = base_path('/resources/views/livewire/' . Str::kebab($this->nameOfTheClass) . '.blade.php');
 
         if ($this->file->exists($fileDestination)) {
-            $this->info('This view file already exists: '.Str::kebab($this->nameOfTheClass).'.php');
+            $this->info('This view file already exists: ' . Str::kebab($this->nameOfTheClass) . '.php');
             $this->info('Aborting view file creation.');
 
             return false;
@@ -148,6 +150,6 @@ class LivewireCustomCrudCommand extends Command
 
         // Copy file to destination
         $this->file->copy($fileOrigin, $fileDestination);
-        $this->info('Livewire view file created: '.$fileDestination);
+        $this->info('Livewire view file created: ' . $fileDestination);
     }
 }

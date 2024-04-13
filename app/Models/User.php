@@ -1,36 +1,36 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\{BelongsToMany, HasOne};
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Cache;
 use Laravel\Fortify\TwoFactorAuthenticatable;
-use Laravel\Jetstream\HasProfilePhoto;
-use Laravel\Jetstream\HasTeams;
+use Laravel\Jetstream\{HasProfilePhoto, HasTeams};
 use Laravel\Sanctum\HasApiTokens;
-use Spatie\MediaLibrary\HasMedia;
-use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\{HasMedia, InteractsWithMedia};
 use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable implements HasMedia
 {
-    use InteractsWithMedia;
     use HasApiTokens;
     use HasFactory;
     use HasProfilePhoto;
-    use HasTeams;
-    use Notifiable;
-    use TwoFactorAuthenticatable;
     use HasRoles;
+    use HasTeams;
+    use InteractsWithMedia;
+    use Notifiable;
     use SoftDeletes;
+    use TwoFactorAuthenticatable;
 
     public string $section = 'Users';
-    public array  $searchable = ['name', 'email'];
+
+    public array $searchable = ['name', 'email'];
 
     protected $with = [
         // 'media',
@@ -79,7 +79,7 @@ class User extends Authenticatable implements HasMedia
     public function registerMediaCollections(): void
     {
         $this->addMediaCollection('avatars')
-            ->useFallbackUrl('https://www.gravatar.com/avatar/'.md5($this->attributes['email']));
+            ->useFallbackUrl('https://www.gravatar.com/avatar/' . md5($this->attributes['email']));
     }
 
     public function route($id): string
@@ -107,25 +107,16 @@ class User extends Authenticatable implements HasMedia
         Cache::forget('users.all');
     }
 
-    /**
-     * @return HasOne
-     */
     public function parent(): HasOne
     {
         return $this->hasOne(User::class, 'id', 'parent_id');
     }
 
-    /**
-     * @return BelongsToMany
-     */
     public function tags(): BelongsToMany
     {
         return $this->belongsToMany(Tag::class);
     }
 
-    /**
-     * @return HasOne
-     */
     public function address(): HasOne
     {
         return $this->hasOne(Address::class);

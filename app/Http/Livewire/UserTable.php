@@ -1,11 +1,12 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace App\Http\Livewire;
 
 use App\Models\User;
-use Illuminate\Support\Carbon;
-use Illuminate\Database\QueryException;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Carbon;
 use PowerComponents\LivewirePowerGrid\Rules\{Rule, RuleActions};
 use PowerComponents\LivewirePowerGrid\Traits\ActionButton;
 use PowerComponents\LivewirePowerGrid\{Button, Column, Exportable, Footer, Header, PowerGrid, PowerGridComponent, PowerGridEloquent};
@@ -45,10 +46,10 @@ final class UserTable extends PowerGridComponent
     */
 
     /**
-    * PowerGrid datasource.
-    *
-    * @return Builder<\App\Models\User>
-    */
+     * PowerGrid datasource.
+     *
+     * @return Builder<\App\Models\User>
+     */
     public function datasource(): Builder
     {
         return User::query();
@@ -102,7 +103,7 @@ final class UserTable extends PowerGridComponent
     |
     */
 
-     /**
+    /**
      * PowerGrid Columns.
      *
      * @return array<int, Column>
@@ -124,7 +125,7 @@ final class UserTable extends PowerGridComponent
 
             Column::make('Created at', 'created_at_formatted', 'created_at')
                 ->makeInputDatePicker()
-                ->searchable()
+                ->searchable(),
         ];
     }
 
@@ -136,13 +137,12 @@ final class UserTable extends PowerGridComponent
     |
     */
 
-     /**
+    /**
      * PowerGrid User Action Buttons.
      *
      * @return array<int, Button>
      */
 
-    
     // public function actions(): array
     // {
     //    return [
@@ -156,7 +156,6 @@ final class UserTable extends PowerGridComponent
     //            ->method('delete')
     //     ];
     // }
-    
 
     /*
     |--------------------------------------------------------------------------
@@ -166,13 +165,12 @@ final class UserTable extends PowerGridComponent
     |
     */
 
-     /**
+    /**
      * PowerGrid User Action Rules.
      *
      * @return array<int, RuleActions>
      */
 
-    
     // public function actionRules(): array
     // {
     //    return [
@@ -183,5 +181,4 @@ final class UserTable extends PowerGridComponent
     //             ->hide(),
     //     ];
     // }
-    
 }

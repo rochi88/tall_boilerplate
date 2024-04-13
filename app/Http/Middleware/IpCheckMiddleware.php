@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace App\Http\Middleware;
 
 use Closure;
@@ -12,8 +14,6 @@ class IpCheckMiddleware
     /**
      * Handle an incoming request.
      *
-     * @param Request $request
-     * @param Closure $next
      *
      * @return mixed
      */
@@ -22,6 +22,7 @@ class IpCheckMiddleware
         if (auth()->check()) {
             $approved = [];
             $ips = Setting::where('key', 'ips')->value('value');
+
             if ($ips !== null) {
                 $ips = json_decode($ips, true);
 
@@ -30,8 +31,6 @@ class IpCheckMiddleware
                 }
 
                 if (in_array($request->ip(), $approved, true) && auth()->user()->is_office_login_only === 1) {
-                    flash()->error('Sorry, the system cannot be accessed from your location.');
-
                     Auth::guard()->logout();
 
                     return redirect()->route('login');
