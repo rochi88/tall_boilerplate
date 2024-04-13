@@ -56,11 +56,13 @@ class LivewireCustomCrudCommand extends Command
         // Gathers all parameters
         $this->gatherParameters();
 
-        // Generates the Livewire Class File
-        $this->generateLivewireCrudClassfile();
+        if(!empty($this->nameOfTheClass) && !empty($this->nameOfTheModelClass)) {
+            // Generates the Livewire Class File
+            $this->generateLivewireCrudClassfile();
 
-        // Generates the Livewire View File
-        $this->generateLivewireCrudViewFile();
+            // Generates the Livewire View File
+            $this->generateLivewireCrudViewFile();
+        }        
     }
 
     /**
@@ -74,13 +76,23 @@ class LivewireCustomCrudCommand extends Command
         $this->nameOfTheModelClass = $this->argument('nameOfTheModelClass');
 
         // If you didn't input the name of the class
-        if (!$this->nameOfTheClass) {
+        if (empty($this->nameOfTheClass) || is_null($this->nameOfTheClass)) {
+            $this->nameOfTheClass = $this->ask('Enter class name');
+        }
+        
+        if (!empty($this->nameOfTheClass) && $this->isReservedClassName($name = $this->nameOfTheClass)) {
+            $this->comment('WHOOPS! 😳, Class name is reserved');
             $this->nameOfTheClass = $this->ask('Enter class name');
         }
 
         // If you didn't input the name of the class
-        if (!$this->nameOfTheModelClass) {
+        if (empty($this->nameOfTheModelClass) || is_null($this->nameOfTheModelClass)) {
             $this->nameOfTheModelClass = $this->ask('Enter model name');
+        }
+
+        if (!empty($this->nameOfTheModelClass) && $this->isReservedClassName($name = $this->nameOfTheModelClass)) {
+            $this->comment('WHOOPS! 😳, Class name is reserved');
+            $this->nameOfTheClass = $this->ask('Enter class name');
         }
 
         // Convert to studly case
@@ -151,5 +163,87 @@ class LivewireCustomCrudCommand extends Command
         // Copy file to destination
         $this->file->copy($fileOrigin, $fileDestination);
         $this->info('Livewire view file created: ' . $fileDestination);
+    }
+
+    public function isReservedClassName($name)
+    {
+        return array_search(strtolower($name), $this->getReservedName()) !== false;
+    }
+
+    private function getReservedName()
+    {
+        return [
+            'parent',
+            'component',
+            'interface',
+            '__halt_compiler',
+            'abstract',
+            'and',
+            'array',
+            'as',
+            'break',
+            'callable',
+            'case',
+            'catch',
+            'class',
+            'clone',
+            'const',
+            'continue',
+            'declare',
+            'default',
+            'die',
+            'do',
+            'echo',
+            'else',
+            'elseif',
+            'empty',
+            'enddeclare',
+            'endfor',
+            'endforeach',
+            'endif',
+            'endswitch',
+            'endwhile',
+            'eval',
+            'exit',
+            'extends',
+            'final',
+            'finally',
+            'fn',
+            'for',
+            'foreach',
+            'function',
+            'global',
+            'goto',
+            'if',
+            'implements',
+            'include',
+            'include_once',
+            'instanceof',
+            'insteadof',
+            'interface',
+            'isset',
+            'list',
+            'namespace',
+            'new',
+            'or',
+            'print',
+            'private',
+            'protected',
+            'public',
+            'require',
+            'require_once',
+            'return',
+            'static',
+            'switch',
+            'throw',
+            'trait',
+            'try',
+            'unset',
+            'use',
+            'var',
+            'while',
+            'xor',
+            'yield',
+        ];
     }
 }
