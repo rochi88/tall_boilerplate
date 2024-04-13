@@ -5,35 +5,31 @@
     "keywords": ["framework", "laravel", "tall", "boilerplate"],
     "license": "MIT",
     "require": {
-        "php": "^8.0",
+        "php": "^8.2",
         "guzzlehttp/guzzle": "^7.2",
-        "josegus/laravel-flash": "^1.3",
-        "laravel/framework": "^9.0",
-        "laravel/jetstream": "^2.12",
-        "laravel/sanctum": "^3.0",
+        "laravel/framework": "^11.0",
+        "laravel/jetstream": "^5.0",
+        "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.7",
-        "livewire/livewire": "^2.10",
-        "power-components/livewire-powergrid": "^3.5",
-        "spatie/laravel-backup": "^8.1",
-        "spatie/laravel-enum": "^3.0",
-        "spatie/laravel-medialibrary": "^10.6",
-        "spatie/laravel-permission": "^5.5",
-        "usernotnull/tall-toasts": "^1.5",
-        "wireui/wireui": "^1.17"
+        "livewire/livewire": "^3.0",
+        "power-components/livewire-powergrid": "^5.4",
+        "spatie/laravel-backup": "^8.6",
+        "spatie/laravel-medialibrary": "^11.4",
+        "spatie/laravel-permission": "^6.4",
+        "wireui/wireui": "^1.19"
     },
     "require-dev": {
-        "barryvdh/laravel-debugbar": "^3.7",
-        "barryvdh/laravel-ide-helper": "^2.12",
+        "barryvdh/laravel-debugbar": "^3.12",
         "fakerphp/faker": "^1.9.1",
-        "friendsofphp/php-cs-fixer": "^3.11",
         "laravel/pint": "^1.0",
-        "laravel/sail": "^1.0.1",
+        "laravel/sail": "^1.18",
         "mockery/mockery": "^1.4.4",
-        "nunomaduro/collision": "^6.1",
-        "pestphp/pest": "^1.21",
-        "pestphp/pest-plugin-laravel": "^1.2",
-        "phpunit/phpunit": "^9.5.10",
-        "spatie/laravel-ignition": "^1.0"
+        "nunomaduro/collision": "^8.1",
+        "pestphp/pest": "^2.34",
+        "pestphp/pest-plugin-laravel": "^2.3",
+        "pestphp/pest-plugin-livewire": "^2.1",
+        "phpunit/phpunit": "^10.1",
+        "spatie/laravel-ignition": "^2.0"
     },
     "autoload": {
         "psr-4": {
@@ -50,13 +46,11 @@
     "scripts": {
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
-            "@php artisan package:discover --ansi",
-            "@php artisan vendor:publish --force --tag=livewire:assets --ansi"
+            "@php artisan package:discover --ansi"
         ],
         "post-update-cmd": [
             "@php artisan vendor:publish --tag=laravel-assets --ansi --force",
-			"@php artisan ide-helper:generate",
-            "@php artisan ide-helper:meta"
+            "@php artisan vendor:publish --tag=livewire:assets --ansi --force"
         ],
         "post-root-package-install": [
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
@@ -72,17 +66,13 @@
             "@php artisan config:clear",
             "composer dumpautoload -o"
         ],
-        "cache-all": [
-            "@php artisan config:cache",
-            "@php artisan route:cache"
-        ],
-        "reset": [
-            "composer clear-all",
-            "composer cache-all"
-        ],
-        "test": "@php artisan test --parallel",
-        "test-coverage": "vendor/bin/phpunit --coverage-html coverage",
-        "format": "vendor/bin/php-cs-fixer fix --allow-risky=yes"
+        "lint": "pint",
+        "test:lint": "pint --test",
+        "test:unit": "pest -p",
+        "test": [
+            "@test:lint",
+            "@test:unit"
+        ]
     },
     "extra": {
         "laravel": {
