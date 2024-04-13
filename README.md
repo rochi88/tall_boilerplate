@@ -53,16 +53,10 @@ Ports used in the project:
  - [ ] Import and Export (Excel)
  - [ ] Generate Printable Files (PDF)
 
-## Versions
+## TALL Versions
 
 -   TailwindCSS - 3.0
--   Livewire - 2.0
--   Laravel - 9.0
 -   AlpineJs - 3.0
+-   Laravel - 11.0
+-   Livewire - 3.0
 
-## Useful Commands
-
-### PHP-CS-FIXER
-```
-composer format app
-```
