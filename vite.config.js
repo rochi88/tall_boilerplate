@@ -1,6 +1,6 @@
 import { defineConfig } from 'vite';
 import laravel, { refreshPaths } from 'laravel-vite-plugin';
-import { VitePWA } from 'vite-plugin-pwa';
+import viteCompression from "vite-plugin-compression";
 
 export default defineConfig({
     plugins: [
@@ -11,14 +11,11 @@ export default defineConfig({
             ],
             refresh: [
                 ...refreshPaths,
-                'app/Http/Livewire/**',
+                'app/Livewire/**',
             ],
         }),
-        VitePWA({
-            registerType: 'autoUpdate',
-            devOptions: {
-                enabled: true,
-            }
-        })
+        viteCompression({
+            algorithm: "brotliCompress",
+        }),
     ],
 });

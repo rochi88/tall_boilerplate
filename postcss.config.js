@@ -1,19 +1,7 @@
-const path = require('node:path');
-
-module.exports = {
-    resolve: {
-        alias: {
-            'tailwind.config.js': path.resolve(__dirname, 'tailwind.config.js'),
-        },
-    },
-    optimizeDeps: {
-        include: [
-            path.resolve(__dirname, 'tailwind.config.js'),
-        ]
-    },
+export default {
     plugins: {
         tailwindcss: {},
         autoprefixer: {},
-        ...(process.env.NODE_ENV === 'production' ? { cssnano: {} } : {})
+        ...({ cssnano: {} })
     },
 };
