@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace App\Http\Livewire\Backend;
+namespace App\Livewire\Backend;
 
 use Livewire\Component;
 

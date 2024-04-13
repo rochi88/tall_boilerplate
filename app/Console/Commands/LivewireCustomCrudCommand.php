@@ -109,7 +109,7 @@ class LivewireCustomCrudCommand extends Command
     {
         // Set the origin and destination for the livewire class file
         $fileOrigin = base_path('/stubs/livewire-crud/custom.livewire.crud.stub');
-        $fileDestination = base_path('/app/Http/Livewire/' . $this->nameOfTheClass . '.php');
+        $fileDestination = base_path('/app/Livewire/' . $this->nameOfTheClass . '.php');
 
         if ($this->file->exists($fileDestination)) {
             $this->info('This class file already exists: ' . $this->nameOfTheClass . '.php');

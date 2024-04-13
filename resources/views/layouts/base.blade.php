@@ -3,21 +3,16 @@
 
 <head>
     <!-- meta -->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="{{ config('app.meta.description') }}">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="turbo-visit-control" content="reload">
-    <meta name="turbo-cache-control" content="no-cache">
+    <meta name="robots" content="noindex, nofollow">
 
-    <title>@stack('pagetitle')</title>
-
-    <!-- Web Application Manifest -->
-    <link rel="manifest" href="manifest.webmanifest">
+    <title>{{ $title ?? config('app.name') }}</title>
 
     <!-- Fonts -->
-    <link rel="stylesheet" href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap">
+    <link rel="preconnect" href="https://fonts.bunny.net">
+    <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
     <script>
         if (localStorage._x_darkMode === 'true' || (!('_x_darkMode' in localStorage) && window.matchMedia(
@@ -31,7 +26,6 @@
     <!-- styles -->
     @livewireStyles
     @wireUiScripts
-    @powerGridStyles
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
@@ -39,7 +33,7 @@
     <div class="font-sans text-gray-900 antialiased">
         {{ $slot }}
     </div>
-    @livewireScripts
+    @livewireScriptConfig
 </body>
 
 </html>
