@@ -1,15 +1,13 @@
 import './bootstrap';
 
-import Alpine from 'alpinejs';
-import persist from '@alpinejs/persist';
+import.meta.glob(["../images/**"]);
 
-window.Alpine = Alpine;
-Alpine.plugin(persist);
-Alpine.start();
+import {
+  Livewire,
+  Alpine,
+} from "../../vendor/livewire/livewire/dist/livewire.esm";
 
+import "./../../vendor/power-components/livewire-powergrid/dist/powergrid";
+import "./../../vendor/power-components/livewire-powergrid/dist/tailwind.css";
 
-// Adding turbo
-import 'livewire-turbolinks';
-// import '@hotwired/turbo';
-import * as Turbo from "@hotwired/turbo";
-
+Livewire.start();

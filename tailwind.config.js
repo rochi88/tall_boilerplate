@@ -5,6 +5,7 @@ import typography from '@tailwindcss/typography';
 import cssnano from 'cssnano';
 
 /** @type {import('tailwindcss').Config} */
+const colors = require("tailwindcss/colors");
 export default {
     darkMode: "class",
 
@@ -33,6 +34,10 @@ export default {
             pattern: /bg-(orange|yellow|indigo|purple|cyan|gray|green|blue)-(50|500)/,
             variants: ['hover', 'focus'],
         },
+        {
+            pattern: /max-w-(sm|md|lg|xl|2xl|3xl|4xl|5xl|6xl|7xl)/,
+            variants: ['sm', 'md', 'lg', 'xl', '2xl'],
+        },
     ],
 
     theme: {
@@ -55,56 +60,55 @@ export default {
             //     "6xl": "clamp(4.77rem, 7.48vw + 2.9rem, 8.88rem)",
             // },
             colors: {
-                // cerulean
+                "pg-primary": colors.gray, 
+                // 'pg-primary': colors.neutral,
+                // 'pg-secondary': colors.blue,
+                
                 // primary: {
                 //     '50': '#f1f9fe',
                 //     '100': '#e3f2fb',
                 //     '200': '#c0e5f7', // lighter
                 //     '300': '#89d2f0', // light
                 //     '400': '#4abae6',
-                //     '500': '#22a2d5', // base color
+                //     '500': '#22a2d5', // base color // cerulean
                 //     '600': '#1482b5', // dark
                 //     '700': '#116893', // darker
                 //     '800': '#135979',
                 //     '900': '#154a65',
-                //     '950': '#0e2f43',
-                // },
-                // indigo
+                //     '950': '#0e2f43',    
                 primary: {
                     '50': '#f3f4fb',
                     '100': '#e3e7f6',
                     '200': '#cdd5f0', // lighter
                     '300': '#aab8e6', // light
                     '400': '#8295d8',
-                    '500': '#6574cd', // base color
+                    '500': '#6574cd', // base color // indigo
                     '600': '#5159bf', // dark
                     '700': '#4649af', // darker
                     '800': '#3e3e8f',
                     '900': '#363772',
                     '950': '#242447',
                 },
-                // rose
                 // 'primary': {
                 //     '50': '#fff1f2',
                 //     '100': '#ffe4e6',
                 //     '200': '#fecdd3',
                 //     '300': '#fda4af',
                 //     '400': '#fb7185',
-                //     '500': '#f43f5e',
+                //     '500': '#f43f5e', // base color  // rose
                 //     '600': '#e11d48',
                 //     '700': '#be123c',
                 //     '800': '#9f1239',
                 //     '900': '#881337',
                 //     '950': '#4c0519',
                 // },
-                // pink
                 // 'primary': {
                 //     '50': '#fdf2f8',
                 //     '100': '#fce7f3',
                 //     '200': '#fbcfe8',
                 //     '300': '#f9a8d4',
                 //     '400': '#f472b6',
-                //     '500': '#ec4899',
+                //     '500': '#ec4899', // base color // pink
                 //     '600': '#db2777',
                 //     '700': '#be185d',
                 //     '800': '#9d174d',
@@ -112,7 +116,6 @@ export default {
                 //     '950': '#500724',
                 // },
             },
-
         },
     },
 

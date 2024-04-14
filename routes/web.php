@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-use App\Http\Livewire\Backend\Dashboard;
+use App\Livewire\Backend\Dashboard;
 use Illuminate\Support\Facades\Route;
 
 /*
