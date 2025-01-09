@@ -90,6 +90,7 @@ trait ApiResponse
         if ($errorCode === MySQLError::ER_DUP_ENTRY) {
             return $this->jsonResponse(ApiStatus::ERROR, Response::HTTP_INTERNAL_SERVER_ERROR, $exception->errorInfo[2]);
         }
+
         return null;
     }
 
@@ -127,6 +128,7 @@ trait ApiResponse
                 ],
             ];
         }
+
         return null;
     }
 

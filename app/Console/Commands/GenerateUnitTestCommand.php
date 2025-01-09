@@ -10,6 +10,7 @@ use Symfony\Component\Console\Output\BufferedOutput;
 final class GenerateUnitTestCommand extends Command
 {
     public $buffer;
+
     /**
      * The name and signature of the console command.
      *

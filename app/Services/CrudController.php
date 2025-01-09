@@ -51,12 +51,15 @@ final class CrudController extends Controller
     {
         try {
             $item = $this->model::findOrFail($id);
+
             if (!isset($this->model::$isEnableResourceOwnerCheck)) {
                 return (new $this->resource($item))->additional($this->preparedResponse('show'));
             }
+
             if ($this->model::$isEnableResourceOwnerCheck !== true) {
                 return (new $this->resource($item))->additional($this->preparedResponse('show'));
             }
+
             if (!$this->isOwner($item)) {
                 return $this->forbiddenAccessResponse();
             }
