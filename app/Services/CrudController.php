@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 
-final class CrudController extends Controller
+class CrudController extends Controller
 {
     use ApiResponse;
     use Ownerable;
