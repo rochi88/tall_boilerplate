@@ -8,7 +8,7 @@ use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Str;
 
-class LivewireCustomCrudCommand extends Command
+final class LivewireCustomCrudCommand extends Command
 {
     /**
      * The name and signature of the console command.
@@ -29,11 +29,11 @@ class LivewireCustomCrudCommand extends Command
     /**
      * Our custom class properties here!
      */
-    protected $nameOfTheClass;
+    private $nameOfTheClass;
 
-    protected $nameOfTheModelClass;
+    private $nameOfTheModelClass;
 
-    protected $file;
+    private readonly \Illuminate\Filesystem\Filesystem $file;
 
     /**
      * Create a new command instance.
@@ -48,10 +48,8 @@ class LivewireCustomCrudCommand extends Command
 
     /**
      * Execute the console command.
-     *
-     * @return int
      */
-    public function handle()
+    public function handle(): void
     {
         // Gathers all parameters
         $this->gatherParameters();
@@ -68,12 +66,15 @@ class LivewireCustomCrudCommand extends Command
         }
     }
 
+    public function isReservedClassName($name): bool
+    {
+        return in_array(mb_strtolower((string) $name), $this->getReservedName());
+    }
+
     /**
      * Gather all necessary parameters.
-     *
-     * @return void
      */
-    protected function gatherParameters()
+    private function gatherParameters(): void
     {
         $this->nameOfTheClass = $this->argument('nameOfTheClass');
         $this->nameOfTheModelClass = $this->argument('nameOfTheModelClass');
@@ -105,10 +106,8 @@ class LivewireCustomCrudCommand extends Command
 
     /**
      * Generates the CRUD table file.
-     *
-     * @return void
      */
-    protected function generateLivewireCrudTablefile()
+    private function generateLivewireCrudTablefile(): ?bool
     {
         // Set the origin and destination for the livewire class file
         $fileOrigin = base_path('/stubs/livewire-crud/custom.livewire.crud.table.stub');
@@ -138,14 +137,13 @@ class LivewireCustomCrudCommand extends Command
         // Put the content into the destination directory
         $this->file->put($fileDestination, $replaceFileOriginalString);
         $this->info('Livewire table file created: ' . $fileDestination);
+        return null;
     }
 
     /**
      * Generates the CRUD class file.
-     *
-     * @return void
      */
-    protected function generateLivewireCrudClassfile()
+    private function generateLivewireCrudClassfile(): ?bool
     {
         // Set the origin and destination for the livewire class file
         $fileOrigin = base_path('/stubs/livewire-crud/custom.livewire.crud.stub');
@@ -180,14 +178,13 @@ class LivewireCustomCrudCommand extends Command
         // Put the content into the destination directory
         $this->file->put($fileDestination, $replaceFileOriginalString);
         $this->info('Livewire class file created: ' . $fileDestination);
+        return null;
     }
 
     /**
      * generateLivewireCrudViewFile.
-     *
-     * @return void
      */
-    protected function generateLivewireCrudViewFile()
+    private function generateLivewireCrudViewFile(): ?bool
     {
         // Set the origin and destination for the livewire class file
         $fileOrigin = base_path('/stubs/livewire-crud/custom.livewire.crud.view.stub');
@@ -203,14 +200,10 @@ class LivewireCustomCrudCommand extends Command
         // Copy file to destination
         $this->file->copy($fileOrigin, $fileDestination);
         $this->info('Livewire view file created: ' . $fileDestination);
+        return null;
     }
 
-    public function isReservedClassName($name)
-    {
-        return array_search(strtolower($name), $this->getReservedName()) !== false;
-    }
-
-    private function getReservedName()
+    private function getReservedName(): array
     {
         return [
             'parent',
