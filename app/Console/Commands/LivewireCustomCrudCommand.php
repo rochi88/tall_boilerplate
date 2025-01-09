@@ -33,7 +33,7 @@ final class LivewireCustomCrudCommand extends Command
 
     private $nameOfTheModelClass;
 
-    private readonly \Illuminate\Filesystem\Filesystem $file;
+    private readonly Filesystem $file;
 
     /**
      * Create a new command instance.
@@ -137,6 +137,7 @@ final class LivewireCustomCrudCommand extends Command
         // Put the content into the destination directory
         $this->file->put($fileDestination, $replaceFileOriginalString);
         $this->info('Livewire table file created: ' . $fileDestination);
+
         return null;
     }
 
@@ -178,6 +179,7 @@ final class LivewireCustomCrudCommand extends Command
         // Put the content into the destination directory
         $this->file->put($fileDestination, $replaceFileOriginalString);
         $this->info('Livewire class file created: ' . $fileDestination);
+
         return null;
     }
 
@@ -200,6 +202,7 @@ final class LivewireCustomCrudCommand extends Command
         // Copy file to destination
         $this->file->copy($fileOrigin, $fileDestination);
         $this->info('Livewire view file created: ' . $fileDestination);
+
         return null;
     }
 

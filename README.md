@@ -1,7 +1,5 @@
 ## TALL Stack Boilerplate
 
-![StyleCI](https://github.styleci.io/repos/522887896/shield?branch=main)
-
 Basic function of a system is here for TailwindCSS, AlpineJs, Livewire and Laravel.
 
 ## Install application
@@ -23,17 +21,6 @@ Now visit `` http://localhost:8000 or http://127.0.0.1:8000 ``
 
 ## Admin Credentials
 > Email: user@domain.com || Password: secret
-
-## Docker Ports
-
-Ports used in the project:
-| Software | Port |
-|-------------- | -------------- |
-| **nginx** | 80 |
-| **phpmyadmin** | 8080 |
-| **mysql** | 3306 |
-| **php** | 9000 |
-| **redis** | 6379 |
 
 ## Features (WIP)
 
