@@ -1,6 +1,4 @@
-## TALL Stack Boilerplate
-
-![StyleCI](https://github.styleci.io/repos/522887896/shield?branch=main)
+## Api Boilerplate
 
 Basic function of a api system.
 
