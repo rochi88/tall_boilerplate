@@ -7,8 +7,8 @@ on:
       - '*.x'
 
   pull_request:
-  schedule:
-    - cron: '0 0 * * *'
+  # schedule:
+  #   - cron: '0 0 * * *'
 
 concurrency:
   cancel-in-progress: true
