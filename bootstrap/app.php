@@ -1,6 +1,7 @@
 <?php
 
 declare(strict_types=1);
+
 use App\Modules\Security\Http\Middleware\IPAuthorizationMiddleware;
 use App\Modules\Security\Http\Middleware\PhishingDetectionMiddleware;
 use App\Modules\Security\Http\Middleware\RiskEvaluationMiddleware;
