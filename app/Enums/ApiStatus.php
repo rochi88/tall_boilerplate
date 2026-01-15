@@ -1,11 +1,11 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App\Enums;
 
-enum ApiStatus
+enum ApiStatus: string
 {
-    public const SUCCESS = 'success';
-    public const ERROR = 'error';
+    case SUCCESS = 'success';
+    case ERROR = 'error';
 }

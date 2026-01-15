@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Database\Seeders;
 
@@ -15,7 +15,7 @@ final class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->call([
-            IPListSeeder::class,
+            \App\Modules\Security\Database\Seeders\SecuritySeeder::class,
             UserSeeder::class,
         ]);
     }

@@ -6,24 +6,31 @@
     "keywords": ["laravel", "framework"],
     "license": "MIT",
     "require": {
-        "php": "^8.2",
-        "laravel/framework": "^11.31",
+        "php": "^8.3",
+        "laravel/fortify": "^1.33",
+        "laravel/framework": "^12.0",
+        "laravel/pulse": "^1.4",
         "laravel/sanctum": "^4.0",
-        "laravel/tinker": "^2.9",
-        "livewire/livewire": "^3.5",
-        "tymon/jwt-auth": "^2.1"
+        "laravel/tinker": "^2.10.1",
+        "livewire/livewire": "^3.6.4",
+        "livewire/volt": "^1.7.0"
     },
     "require-dev": {
-        "barryvdh/laravel-debugbar": "^3.13",
-        "driftingly/rector-laravel": "^2.0",
+        "barryvdh/laravel-debugbar": "^3.16",
+        "barryvdh/laravel-ide-helper": "^3.6",
+        "deptrac/deptrac": "^3.0",
+        "driftingly/rector-laravel": "^2.1",
         "fakerphp/faker": "^1.23",
-        "laravel/pail": "^1.1",
-        "laravel/pint": "^1.13",
-        "laravel/sail": "^1.26",
+        "larastan/larastan": "^3.8",
+        "laravel/breeze": "^2.3",
+        "laravel/pail": "^1.2.2",
+        "laravel/pint": "^1.24",
+        "laravel/sail": "^1.41",
+        "laravel/telescope": "^5.16",
         "mockery/mockery": "^1.6",
-        "nunomaduro/collision": "^8.1",
-        "phpunit/phpunit": "^11.0.1",
-        "rector/rector": "^2.0"
+        "nunomaduro/collision": "^8.6",
+        "phpunit/phpunit": "^11.5.3",
+        "rector/rector": "^2.3"
     },
     "autoload": {
         "psr-4": {
@@ -43,7 +50,9 @@
             "@php artisan package:discover --ansi"
         ],
         "post-update-cmd": [
-            "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
+            "Illuminate\\Foundation\\ComposerScripts::postUpdate",
+            "@php artisan vendor:publish --tag=laravel-assets --ansi --force",
+            "@php artisan ide-helper:generate"
         ],
         "post-root-package-install": [
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
@@ -67,11 +76,21 @@
         ],
         "refacto": "rector",
         "lint": "pint",
-        "utest": "vendor/bin/phpunit"
+        "analyse": "phpstan analyse",
+        "test:refacto": "rector --dry-run",
+        "test:lint": "pint --test",
+        "test": [
+            "@test:refacto",
+            "@test:lint",
+            "@php artisan config:clear --ansi",
+            "@php artisan test"
+        ]
     },
     "extra": {
         "laravel": {
-            "dont-discover": []
+            "dont-discover": [
+                "laravel/telescope"
+            ]
         }
     },
     "config": {

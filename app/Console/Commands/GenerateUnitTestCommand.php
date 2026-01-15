@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App\Console\Commands;
 
@@ -32,9 +32,9 @@ final class GenerateUnitTestCommand extends Command
      */
     public function handle()
     {
-        $this->buffer = new BufferedOutput();
+        $this->buffer = new BufferedOutput;
         $this->callBuffer('route:list', [
-            '--json'          => true,
+            '--json' => true,
             '--except-vendor' => true,
         ]);
 
@@ -52,11 +52,12 @@ final class GenerateUnitTestCommand extends Command
 
                 continue;
             }
+
             $this->line('Generating unit test for (' . $route['method'] . ') ' . $route['uri']);
             $class = str($route['name'])->replace('.', ' ')->headline()->replace(' ', '') . 'Test';
 
             $this->call('pest:test', [
-                'name'    => $class,
+                'name' => $class,
                 '--force' => true,
             ]);
         }
