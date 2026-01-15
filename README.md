@@ -42,8 +42,8 @@ Now visit `` http://localhost:8000 or http://127.0.0.1:8000 ``
 
 ## TALL Versions
 
--   TailwindCSS - 3.0
+-   TailwindCSS - 4.0
 -   AlpineJs - 3.0
 -   Laravel - 12.0
--   Livewire - 3.0
+-   Livewire - 4.0
 
