@@ -1,10 +1,11 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App\Http\Resources;
 
-use App\Enums\{ApiStatus, Messages};
+use App\Enums\ApiStatus;
+use App\Enums\Messages;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\Auth;
@@ -19,17 +20,18 @@ final class LoginResource extends JsonResource
      *
      * @return array<string, mixed>
      */
+    #[\Override]
     public function toArray(Request $request): array
     {
         return [
             'response' => [
-                'status'      => ApiStatus::SUCCESS,
+                'status' => ApiStatus::SUCCESS,
                 'status_code' => Response::HTTP_OK,
-                'message'     => Messages::LOGIN_SUCCESSFUL,
-                'data'        => [
-                    'token_type'   => 'bearer',
+                'message' => Messages::LOGIN_SUCCESSFUL,
+                'data' => [
+                    'token_type' => 'bearer',
                     'access_token' => $this->resource,
-                    'expires_in'   => Auth::factory()->getTTL() * 60,
+                    'expires_in' => Auth::factory()->getTTL() * 60,
                 ],
             ],
         ];

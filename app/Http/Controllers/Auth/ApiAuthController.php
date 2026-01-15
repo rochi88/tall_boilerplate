@@ -1,12 +1,14 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\{LoginRequest, StoreUserRequest};
-use App\Http\Resources\{LoginResource, UserResource};
+use App\Http\Requests\LoginRequest;
+use App\Http\Requests\StoreUserRequest;
+use App\Http\Resources\LoginResource;
+use App\Http\Resources\UserResource;
 use App\Models\User;
 use App\Support\Traits\ApiResponse;
 use Exception;
@@ -22,7 +24,7 @@ final class ApiAuthController extends Controller
         try {
             $credentials = $request->validated();
 
-            if (!$token = Auth::attempt($credentials)) {
+            if (! $token = Auth::attempt($credentials)) {
                 return $this->unauthorizedResponse();
             }
 
@@ -73,7 +75,7 @@ final class ApiAuthController extends Controller
         }
     }
 
-    public function me()
+    public function me(): UserResource
     {
         return new UserResource(Auth::user());
     }

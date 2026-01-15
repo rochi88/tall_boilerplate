@@ -4,6 +4,10 @@ declare(strict_types=1);
 
 namespace App\Providers;
 
+use Livewire\Livewire;
+use Livewire\Component;
+use Livewire\Volt\Volt;
+use Laravel\Folio\Folio;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
@@ -101,7 +105,7 @@ abstract class ModuleServiceProvider extends ServiceProvider
      |-----------------------------------------------------------------*/
     protected function registerLivewireComponents(): void
     {
-        if (! class_exists(\Livewire\Livewire::class)) {
+        if (! class_exists(Livewire::class)) {
             return; // Livewire not installed
         }
 
@@ -117,12 +121,12 @@ abstract class ModuleServiceProvider extends ServiceProvider
             if (
                 $class &&
                 class_exists($class) &&
-                is_subclass_of($class, \Livewire\Component::class)
+                is_subclass_of($class, Component::class)
             ) {
-                \Livewire\Livewire::component(
-                    \Illuminate\Support\Str::kebab($this->module)
+                Livewire::component(
+                    Str::kebab($this->module)
                     . '::'
-                    . \Illuminate\Support\Str::kebab(class_basename($class)),
+                    . Str::kebab(class_basename($class)),
                     $class
                 );
             }
@@ -140,14 +144,14 @@ abstract class ModuleServiceProvider extends ServiceProvider
     |-----------------------------------------------------------------*/
     protected function registerVoltComponents(): void
     {
-        if (! (class_exists(\Livewire\Livewire::class) && class_exists(\Livewire\Volt\Volt::class))) {
+        if (! (class_exists(Livewire::class) && class_exists(Volt::class))) {
             return;
         }
 
         $path = $this->basePath . '/Resources/views/pages';
 
         if (is_dir($path)) {
-            \Livewire\Volt\Volt::mount([
+            Volt::mount([
                 $path => Str::lower($this->module),
             ]);
         }
@@ -158,14 +162,14 @@ abstract class ModuleServiceProvider extends ServiceProvider
     |-----------------------------------------------------------------*/
     protected function registerFolioRoutes(): void
     {
-        if (! class_exists(\Laravel\Folio\Folio::class)) {
+        if (! class_exists(Folio::class)) {
             return;
         }
 
         $path = $this->basePath . '/Resources/views/pages';
 
         if (is_dir($path)) {
-            \Laravel\Folio\Folio::path($path);
+            Folio::path($path);
         }
     }
 

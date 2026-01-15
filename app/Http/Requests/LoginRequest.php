@@ -1,9 +1,10 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App\Http\Requests;
 
+use Illuminate\Contracts\Validation\ValidationRule;
 use App\Support\Traits\ApiResponse;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
@@ -25,12 +26,12 @@ final class LoginRequest extends FormRequest
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array|string>
+     * @return array<string, ValidationRule|array|string>
      */
     public function rules(): array
     {
         return [
-            'email'    => 'required|email:rfc,dns|max:100',
+            'email' => 'required|email:rfc,dns|max:100',
             'password' => 'required|max:30',
         ];
     }
@@ -38,17 +39,19 @@ final class LoginRequest extends FormRequest
     /**
      * Get custom error messages for validation rules.
      */
+    #[\Override]
     public function messages(): array
     {
         return [
-            'email.required'    => 'The email address field is required.',
-            'email.email'       => 'The email address must be a valid email address',
-            'email.max'         => 'The email address field may not be greater than 100 characters.',
+            'email.required' => 'The email address field is required.',
+            'email.email' => 'The email address must be a valid email address',
+            'email.max' => 'The email address field may not be greater than 100 characters.',
             'password.required' => 'The password field is required.',
-            'password.max'      => 'The password field may not be greater than 30 characters.',
+            'password.max' => 'The password field may not be greater than 30 characters.',
         ];
     }
 
+    #[\Override]
     protected function failedValidation(Validator $validator): void
     {
         throw new HttpResponseException(response()->json($this->validationFailedResponse($validator->errors()), Response::HTTP_UNPROCESSABLE_ENTITY));

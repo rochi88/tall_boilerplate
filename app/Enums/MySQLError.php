@@ -22,6 +22,7 @@ enum MySQLError: int
             default => null,
         };
     }
+
     case ER_DUP_ENTRY = 1062;
     case ER_BAD_NULL_ERROR = 1048;
     case ER_ACCESS_DENIED_ERROR = 1045;

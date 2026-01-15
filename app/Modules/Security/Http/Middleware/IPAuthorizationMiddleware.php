@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Modules\Security\Http\Middleware;
 
-use App\Enums\Messages;
 use App\Support\APIResponse;
 use Closure;
 use Illuminate\Http\Request;
@@ -31,7 +30,7 @@ final class IPAuthorizationMiddleware
         $allowedIps = Cache::remember(
             'security:ip_allowlist:v1',
             now()->addMinutes(5),
-            fn () => $this->allowedIps()
+            fn (): array => $this->allowedIps()
         );
 
         if (! in_array($ip, $allowedIps, true)) {

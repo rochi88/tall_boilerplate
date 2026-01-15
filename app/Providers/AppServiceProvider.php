@@ -5,17 +5,17 @@ declare(strict_types=1);
 namespace App\Providers;
 
 use App\Models\User;
+use Carbon\CarbonImmutable;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Date;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Vite;
 use Illuminate\Support\ServiceProvider;
-use Carbon\CarbonImmutable;
-use Illuminate\Support\Facades\Date;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rules\Password;
 use Override;
 
@@ -39,10 +39,10 @@ final class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->configureDefaults();
-       
+
     }
 
-    protected function configureDefaults(): void
+    private function configureDefaults(): void
     {
         if (Config::get('app.force_url') === true) {
             URL::forceScheme(
@@ -54,7 +54,7 @@ final class AppServiceProvider extends ServiceProvider
 
         Vite::prefetch(concurrency: 3);
 
-        // Gate::define('viewPulse', fn (User $user) => $user->isAdmin());
+        Gate::define('viewPulse', fn (User $user): User => $user);
 
         Date::use(CarbonImmutable::class);
 

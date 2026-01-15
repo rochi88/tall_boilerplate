@@ -15,11 +15,11 @@ final class PersistRiskFlag implements ShouldQueue
     public function handle(RiskFlagRaised $event): void
     {
         SecurityRiskFlag::create([
-            'user_id'   => $event->userId,
+            'user_id' => $event->userId,
             'flag_type' => $event->flagType,
-            'severity'  => $event->severity,
-            'reason'    => $event->reason,
-            'evidence'  => $event->evidence,
+            'severity' => $event->severity,
+            'reason' => $event->reason,
+            'evidence' => $event->evidence,
         ]);
     }
 }

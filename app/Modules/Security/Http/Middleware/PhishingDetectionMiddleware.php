@@ -20,10 +20,10 @@ final readonly class PhishingDetectionMiddleware
     public function handle(Request $request, Closure $next): Response
     {
         $signals = [
-            'ip_reputation'  => $request->attributes->get('ip_reputation'),
-            'is_new_device'  => (bool) $request->attributes->get('is_new_device', false),
-            'geo_mismatch'   => (bool) $request->attributes->get('geo_mismatch', false),
-            'failed_attempts'=> (int) $request->attributes->get('failed_attempts', 0),
+            'ip_reputation' => $request->attributes->get('ip_reputation'),
+            'is_new_device' => (bool) $request->attributes->get('is_new_device', false),
+            'geo_mismatch' => (bool) $request->attributes->get('geo_mismatch', false),
+            'failed_attempts' => (int) $request->attributes->get('failed_attempts', 0),
         ];
 
         $result = $this->riskEngine->evaluate($signals);

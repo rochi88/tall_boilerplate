@@ -33,8 +33,8 @@ final class SecurityServiceProvider extends ModuleServiceProvider
         | Register module event listeners (conditionally)
         |--------------------------------------------------------------------------
         */
-        if ($this->securityEnabled()) {            
-            $this->app->register(SecurityEventServiceProvider::class);            
+        if ($this->securityEnabled()) {
+            $this->app->register(SecurityEventServiceProvider::class);
         }
     }
 
