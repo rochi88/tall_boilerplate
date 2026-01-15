@@ -1,8 +1,8 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
-use App\Http\Controllers\Api\V1\{AuthController, IPController};
+use App\Http\Controllers\Auth\ApiAuthController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,17 +21,9 @@ Route::group([
     'middleware' => 'api',
     'prefix'     => 'auth',
 ], function () {
-    Route::post('login', [AuthController::class, 'login']);
-    Route::post('logout', [AuthController::class, 'logout']);
-    Route::post('register', [AuthController::class, 'register']);
-    Route::post('refresh', [AuthController::class, 'refresh']);
-    Route::get('me', [AuthController::class, 'me']);
-});
-
-// All Service Api Routes
-Route::group([
-    'middleware' => ['ip-whitelist', 'api', 'jwt-verify'],
-    'prefix'     => 'service',
-], function () {
-    Route::apiResource('ips', IPController::class);
+    Route::post('login', [ApiAuthController::class, 'login']);
+    Route::post('logout', [ApiAuthController::class, 'logout']);
+    Route::post('register', [ApiAuthController::class, 'register']);
+    Route::post('refresh', [ApiAuthController::class, 'refresh']);
+    Route::get('me', [ApiAuthController::class, 'me']);
 });

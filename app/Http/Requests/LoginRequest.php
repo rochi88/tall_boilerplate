@@ -4,7 +4,7 @@ declare(strict_types = 1);
 
 namespace App\Http\Requests;
 
-use App\Traits\ApiResponse;
+use App\Support\Traits\ApiResponse;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;

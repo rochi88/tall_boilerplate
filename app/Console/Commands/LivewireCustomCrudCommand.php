@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App\Console\Commands;
 
@@ -43,7 +43,7 @@ final class LivewireCustomCrudCommand extends Command
     public function __construct()
     {
         parent::__construct();
-        $this->file = new Filesystem();
+        $this->file = new Filesystem;
     }
 
     /**
@@ -54,7 +54,7 @@ final class LivewireCustomCrudCommand extends Command
         // Gathers all parameters
         $this->gatherParameters();
 
-        if (!empty($this->nameOfTheClass) && !empty($this->nameOfTheModelClass)) {
+        if (! empty($this->nameOfTheClass) && ! empty($this->nameOfTheModelClass)) {
             // Generates the Livewire Table File
             $this->generateLivewireCrudTablefile();
 
@@ -84,7 +84,7 @@ final class LivewireCustomCrudCommand extends Command
             $this->nameOfTheClass = $this->ask('Enter class name');
         }
 
-        if (!empty($this->nameOfTheClass) && $this->isReservedClassName($name = $this->nameOfTheClass)) {
+        if (! empty($this->nameOfTheClass) && $this->isReservedClassName($name = $this->nameOfTheClass)) {
             $this->comment('WHOOPS! 😳, Class name is reserved');
             $this->nameOfTheClass = $this->ask('Enter class name');
         }
@@ -94,7 +94,7 @@ final class LivewireCustomCrudCommand extends Command
             $this->nameOfTheModelClass = $this->ask('Enter model name');
         }
 
-        if (!empty($this->nameOfTheModelClass) && $this->isReservedClassName($name = $this->nameOfTheModelClass)) {
+        if (! empty($this->nameOfTheModelClass) && $this->isReservedClassName($name = $this->nameOfTheModelClass)) {
             $this->comment('WHOOPS! 😳, Class name is reserved');
             $this->nameOfTheClass = $this->ask('Enter class name');
         }
