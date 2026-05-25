@@ -9,9 +9,12 @@ Route::group([
     'middleware' => 'api',
     'prefix' => 'auth',
 ], function (): void {
-    Route::post('login', [ApiAuthController::class, 'login']);
+    Route::middleware('throttle:login')->group(function (): void {
+        Route::post('login', [ApiAuthController::class, 'login']);
+        Route::post('register', [ApiAuthController::class, 'register']);
+    });
+
     Route::post('logout', [ApiAuthController::class, 'logout']);
-    Route::post('register', [ApiAuthController::class, 'register']);
     Route::post('refresh', [ApiAuthController::class, 'refresh']);
     Route::get('me', [ApiAuthController::class, 'me']);
 });

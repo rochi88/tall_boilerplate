@@ -4,11 +4,12 @@ declare(strict_types=1);
 
 namespace App\Http\Requests;
 
-use Illuminate\Contracts\Validation\ValidationRule;
 use App\Support\Traits\ApiResponse;
+use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Validation\Rules\Password;
 use Symfony\Component\HttpFoundation\Response;
 
 final class StoreUserRequest extends FormRequest
@@ -33,7 +34,7 @@ final class StoreUserRequest extends FormRequest
         return [
             'name' => 'required|max:100',
             'email' => 'required|email:rfc,dns|max:100',
-            'password' => 'required|max:30',
+            'password' => ['required', 'string', Password::defaults()],
         ];
     }
 
@@ -50,7 +51,6 @@ final class StoreUserRequest extends FormRequest
             'email.email' => 'The email address must be a valid email address',
             'email.max' => 'The email address field may not be greater than 100 characters.',
             'password.required' => 'The password field is required.',
-            'password.max' => 'The password field may not be greater than 30 characters.',
         ];
     }
 

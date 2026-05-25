@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Http\Middleware\SecureHeaders;
 use App\Modules\Security\Http\Middleware\IPAuthorizationMiddleware;
 use App\Modules\Security\Http\Middleware\PhishingDetectionMiddleware;
 use App\Modules\Security\Http\Middleware\RiskEvaluationMiddleware;
@@ -30,6 +31,11 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware): void {
         $middleware->web(append: [
             AddLinkHeadersForPreloadedAssets::class,
+            SecureHeaders::class,
+        ]);
+
+        $middleware->api(append: [
+            SecureHeaders::class,
         ]);
 
         $middleware->appendToGroup('ip.authorized', [IPAuthorizationMiddleware::class]);

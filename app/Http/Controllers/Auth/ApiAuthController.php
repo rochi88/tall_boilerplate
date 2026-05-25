@@ -13,13 +13,14 @@ use App\Models\User;
 use App\Support\Traits\ApiResponse;
 use Exception;
 use Illuminate\Database\QueryException;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
 
 final class ApiAuthController extends Controller
 {
     use ApiResponse;
 
-    public function login(LoginRequest $request)
+    public function login(LoginRequest $request): LoginResource|JsonResponse
     {
         try {
             $credentials = $request->validated();
@@ -38,7 +39,7 @@ final class ApiAuthController extends Controller
         }
     }
 
-    public function logout()
+    public function logout(): JsonResponse
     {
         try {
             Auth::logout();
@@ -51,7 +52,7 @@ final class ApiAuthController extends Controller
         }
     }
 
-    public function register(StoreUserRequest $request)
+    public function register(StoreUserRequest $request): UserResource|JsonResponse
     {
         try {
             $user = User::create($request->validated());
@@ -62,7 +63,7 @@ final class ApiAuthController extends Controller
         }
     }
 
-    public function refresh()
+    public function refresh(): LoginResource|JsonResponse
     {
         try {
             $newToken = Auth::refresh();

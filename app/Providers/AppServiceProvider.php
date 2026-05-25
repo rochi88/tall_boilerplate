@@ -7,6 +7,7 @@ namespace App\Providers;
 use App\Models\User;
 use Carbon\CarbonImmutable;
 use Illuminate\Cache\RateLimiting\Limit;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Date;
@@ -50,7 +51,14 @@ final class AppServiceProvider extends ServiceProvider
             );
         }
 
+        Model::shouldBeStrict(! app()->isProduction());
+
         RateLimiter::for('api', fn (Request $request) => Limit::perMinute(60)->by(optional($request->user())->id ?: $request->ip()));
+
+        RateLimiter::for('login', fn (Request $request) => [
+            Limit::perMinute(5)->by($request->input('email')),
+            Limit::perMinute(20)->by($request->ip()),
+        ]);
 
         Vite::prefetch(concurrency: 3);
 

@@ -32,7 +32,7 @@ final class LoginRequest extends FormRequest
     {
         return [
             'email' => 'required|email:rfc,dns|max:100',
-            'password' => 'required|max:30',
+            'password' => 'required|max:255',
         ];
     }
 
@@ -47,7 +47,6 @@ final class LoginRequest extends FormRequest
             'email.email' => 'The email address must be a valid email address',
             'email.max' => 'The email address field may not be greater than 100 characters.',
             'password.required' => 'The password field is required.',
-            'password.max' => 'The password field may not be greater than 30 characters.',
         ];
     }
 

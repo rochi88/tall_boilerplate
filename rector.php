@@ -21,7 +21,7 @@ return RectorConfig::configure()
     ->withImportNames(importShortClasses: false, removeUnusedImports: true)
     ->withSets([
         LevelSetList::UP_TO_PHP_83,
-        LaravelSetList::LARAVEL_110,
+        LaravelSetList::LARAVEL_130,
         SetList::CODE_QUALITY,
         SetList::CODING_STYLE,
         SetList::DEAD_CODE,
